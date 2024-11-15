@@ -1,0 +1,48 @@
+/var/log/php/errors.log {
+        rotate 12
+        weekly
+        missingok
+        notifempty
+        compress
+        delaycompress
+        # instead of creating a new log file after rotating, the old log file will be truncated
+        # avoids `postrotate` of finding the process & sending it a HUP signal to reopen logs
+        # could possibly lose incoming logs during the time the logs are rotated
+        copytruncate
+        # postrotate
+        #         if [ -x /usr/local/lib/php/php8.1-fpm-reopenlogs ]; then
+        #                 /usr/local/lib/php/php8.1-fpm-reopenlogs;
+        #         fi
+        # endscript
+}
+# Laravel queues
+/var/www/logs/horizon.log {
+        rotate 7
+        daily
+        missingok
+        notifempty
+        compress
+        delaycompress
+        copytruncate
+}
+# Laravel scheduled tasks
+/var/www/logs/default_tasks.log {
+        rotate 7
+        daily
+        missingok
+        notifempty
+        compress
+        delaycompress
+        copytruncate
+}
+# Laravel logs
+/var/www/storage/logs/laravel.log {
+        su www-data www-data
+        rotate 7
+        daily
+        missingok
+        notifempty
+        compress
+        delaycompress
+        copytruncate
+}

@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {server_name}-deployment
+  namespace: {namespace}
+  labels:
+    app: {server_name}-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {server_name}-server
+  template:
+    metadata:
+      labels:
+        app: {server_name}-server
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - arm64
+      containers:
+        - name: nginx
+          image: 680315756379.dkr.ecr.us-east-1.amazonaws.com/socker-server:latest
+          env:
+            - name: CHANNEL_SYNC_API
+              value: "{CHANNEL_SYNC_API_VALUE}"
+            - name: REDIS_HOST
+              value: "{REDIS_HOST_VALUE}"
+            - name: REDIS_PORT
+              value: "{REDIS_PORT_VALUE}"
+
+          ports:
+            - name: http
+              containerPort: 6001
+          imagePullPolicy: IfNotPresent
+      nodeSelector:
+        kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {server_name}-service
+  namespace: {namespace}
+  labels:
+    app: {server_name}-server
+spec:
+  selector:
+    app: {server_name}-server
+  ports:
+    - protocol: TCP
+      port: 6001
+      targetPort: 6001

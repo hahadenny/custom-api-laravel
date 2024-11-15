@@ -1,0 +1,64 @@
+porta-helpers
+├── install.bat
+├── lib
+│   ├── create-db-shortcuts.bat
+│   ├── create-web-shortcut.bat
+│   ├── create-web-shortcuts.bat
+│   ├── find-chrome.bat
+│   ├── foot.bat
+│   ├── head.bat
+│   ├── setup-docker-logrotate.bat
+│   └── upstall.bat
+├── porta-checks
+│   ├── check-version.bat
+│   ├── view-failed-jobs.bat
+│   └── view-workers.bat
+├── porta-config-viewers
+│   ├── view-api-env.bat
+│   ├── view-app-env.bat
+│   ├── view-cache-config.bat
+│   ├── view-cached-connection.bat
+│   ├── view-nginx-conf.bat
+│   ├── view-php-conf.bat
+│   └── view-supervisor-conf.bat
+├── porta-database
+│   ├── BACKUP-TO-MAIN-transfer-database.bat
+│   ├── bootstrap.bat
+│   ├── checks
+│   │   ├── view-binlog-events.bat
+│   │   ├── view-database-log.bat
+│   │   ├── view-group-repl-status.bat
+│   │   ├── view-repl-vars.bat
+│   │   └── view-transactions.bat
+│   ├── copy-db-backup-to-WSL.bat
+│   ├── create-backup.bat
+│   ├── force-solo-primary.bat
+│   ├── MAIN-TO-BACKUP-transfer-database.bat
+│   ├── migrate-or-seed.bat
+│   ├── reset.bat
+│   ├── restart-repl.bat
+│   ├── restore-from-backup.bat
+│   ├── set-bootstrap-OFF.bat
+│   ├── START-repl.bat
+│   ├── STOP-repl.bat
+│   └── transfer-database.bat
+├── porta-full-diag.bat
+├── porta-log-viewers
+│   ├── view-horizon-log.bat
+│   ├── view-laravel-log.bat
+│   └── view-tasks-log.bat
+├── porta-run
+│   ├── access-api-shell.bat
+│   ├── access-db-shell.bat
+│   ├── access-mysql.bat
+│   ├── access-redis-shell.bat
+│   ├── access-socket-shell.bat
+│   ├── cache-api-config.bat
+│   ├── clear-api-cache.bat
+│   ├── migrate-volumes.bat
+│   ├── restart-workers.bat
+│   ├── rotate-porta-logs.bat
+│   └── stop-porta-socket-server.bat
+└── update.bat
+
+7 directories, 54 files

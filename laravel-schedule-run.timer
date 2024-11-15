@@ -1,0 +1,13 @@
+[Unit]
+Description=Set interval to run Laravel scheduled tasks
+
+[Timer]
+# Start 1 second after booting
+OnBootSec=1s
+# Run every 1 second
+OnUnitActiveSec=1s
+# Ensure the service will be triggered within 1ms
+AccuracySec=1ms
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,37 @@
+image: mlapko/deployer:latest
+
+pipelines:
+  branches:
+#    dev:
+#      - step:
+#          caches:
+#            - composer
+#          script:
+#            - mkdir -p ~/.ssh
+#            - chmod 700 ~/.ssh
+#            - (umask  077 ; echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa)
+#            - ssh-keyscan devapi.porta.solutions >> ~/.ssh/known_hosts
+#            - chmod 644 ~/.ssh/known_hosts
+#            - dep deploy dev
+#    staging:
+#      - step:
+#          caches:
+#            - composer
+#          script:
+#            - mkdir -p ~/.ssh
+#            - chmod 700 ~/.ssh
+#            - (umask  077 ; echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa)
+#            - ssh-keyscan stagingapi.porta.solutions >> ~/.ssh/known_hosts
+#            - chmod 644 ~/.ssh/known_hosts
+#            - dep deploy staging
+    master:
+      - step:
+          caches:
+            - composer
+          script:
+            - mkdir -p ~/.ssh
+            - chmod 700 ~/.ssh
+            - (umask  077 ; echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa)
+            - ssh-keyscan api.porta.solutions >> ~/.ssh/known_hosts
+            - chmod 644 ~/.ssh/known_hosts
+            - dep deploy prod

@@ -1,0 +1,565 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Support Cheatsheet | Porta On Prem</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>:root { --default-font-size: 13px; } body { background-color: rgba(34, 36, 54, 255.0); font-size: var(--default-font-size) !important; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(200, 211, 245, 255.0); } a { color: rgba(116, 160, 241, 255.0); } table td, table th { border: 1px solid rgba(34, 36, 54, 255.0); } hr { background-color: rgba(34, 36, 54, 255.0); } kbd, tr { border: 1px solid rgba(34, 36, 54, 255.0); } h6 { color: rgba(169, 184, 232, 255.0); } blockquote { border-left: 2px solid rgba(116, 160, 241, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(79, 214, 190, 0.752941); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(79, 214, 190, 1.000000); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { visibility: hidden; max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { visibility: visible; /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+ </head>
+ <body>
+  <div md-src-pos="0..17860">
+   <h1 id="porta-installer--helper-logs" md-src-pos="0..31">Porta Installer &amp; Helper Logs</h1>
+   <p md-src-pos="33..171"><span md-src-pos="33..103">The installer script will save most of its output to a log file within</span> <code md-src-pos="104..128">/home/$USER/porta/logs</code><span md-src-pos="128..129">,</span> <span md-src-pos="130..148">usually inside the</span> <code md-src-pos="149..160">installer</code> <span md-src-pos="161..171">directory.</span></p>
+   <hr>
+   <p md-src-pos="180..240"><em md-src-pos="180..240">Note: The container must be running in order to access it.</em></p>
+   <h1 id="access-a-docker-containers-command-line-interface-cli" md-src-pos="242..300">Access A Docker Container's Command Line Interface (CLI)</h1>
+   <p md-src-pos="301..365"><span md-src-pos="301..321">From a WSL terminal,</span> <span md-src-pos="322..325">run</span> <code md-src-pos="326..365">docker exec -it &lt;container name&gt; bash</code></p>
+   <h1 id="docker-desktop-ui" md-src-pos="367..386">Docker Desktop UI</h1>
+   <h2 id="access-docker-container-logs-from-the-docker-gui" md-src-pos="387..438">Access Docker container logs from the Docker GUI</h2>
+   <ol md-src-pos="439..705">
+    <li md-src-pos="439..507">
+     <p md-src-pos="442..507">From the Docker Desktop Dashboard left sidebar, select Containers</p></li>
+    <li md-src-pos="509..566">
+     <p md-src-pos="512..566">Click the name of the container you would like to view</p></li>
+    <li md-src-pos="568..705">
+     <p md-src-pos="571..705">In the top horizontal menu, select "Logs" to view the main log file contents of the container (The "Logs" item is selected by default)</p></li>
+   </ol>
+   <h2 id="access-docker-container-files-from-the-gui" md-src-pos="707..752">Access Docker container files from the GUI</h2>
+   <blockquote md-src-pos="753..885">
+    <p md-src-pos="755..885"><strong md-src-pos="755..766">!NOTE!:</strong> <span md-src-pos="767..848">This functionality should only be used under the guidance of a Disguise engineer,</span> <span md-src-pos="849..885">and only in emergency circumstances.</span></p>
+   </blockquote>
+   <ol md-src-pos="887..1314">
+    <li md-src-pos="887..955">
+     <p md-src-pos="890..955">From the Docker Desktop Dashboard left sidebar, select Containers</p></li>
+    <li md-src-pos="957..1014">
+     <p md-src-pos="960..1014">Click the name of the container you would like to view</p></li>
+    <li md-src-pos="1016..1105">
+     <p md-src-pos="1019..1105">In the top horizontal menu, select "Files" to view the root directory of the container</p></li>
+    <li md-src-pos="1107..1216">
+     <p md-src-pos="1110..1216">To edit a file, right click on it and select "Edit file". A panel containing the file contents will appear</p></li>
+    <li md-src-pos="1218..1314">
+     <p md-src-pos="1221..1314">After editing a file, save changes with the save icon in the top right of the file edit panel</p></li>
+   </ol>
+   <h2 id="docker-logs-locations" md-src-pos="1316..1340">Docker Logs Locations</h2>
+   <p md-src-pos="1341..1434"><span md-src-pos="1341..1399">To find the location of the logs for a specific container,</span> <span md-src-pos="1400..1433">you can run the following command</span>:</p>
+   <pre class="code-fence" md-src-pos="1435..1499"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGluc3BlY3QgLS1mb3JtYXQ9J3t7LkxvZ1BhdGh9fScgY29udGFpbmVybmFtZQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="1435..1499"><a class="run-icon code-block" href="#" role="button" data-command="Run:2ad48a5c3dae9ae662e851b348ca3722" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="1435..1443"></span><span md-src-pos="1443..1467">docker inspect --format=</span><span md-src-pos="1467..1481" style="color: rgb(122, 248, 202);">'{{.LogPath}}'</span><span md-src-pos="1481..1496"> containername
+</span><span md-src-pos="1496..1499"></span></code></pre>
+   <p md-src-pos="1500..1516"><span md-src-pos="1500..1514">Example output</span>:</p>
+   <pre class="code-fence" md-src-pos="1517..1694"><div class="code-fence-highlighter-copy-button" data-fence-content="L3Zhci9saWIvZG9ja2VyL2NvbnRhaW5lcnMvZjg0NGE3YjQ1Y2E1YTk1ODlmZmFhMWE1YmQ4ZGVhMGY0ZTc5ZjBlMmZmNjM5YzFkMDEwZDk2YWZiNGI1MzMzNC9mODQ0YTdiNDVjYTVhOTU4OWZmYWExYTViZDhkZWEwZjRlNzlmMGUyZmY2MzljMWQwMTBkOTZhZmI0YjUzMzM0LWpzb24ubG9n">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="1517..1694"><a class="run-icon code-block" href="#" role="button" data-command="Run:46a855f465154d5157210c3492c9d86b" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="1517..1525"></span><span md-src-pos="1525..1691">/var/lib/docker/containers/f844a7b45ca5a9589ffaa1a5bd8dea0f4e79f0e2ff639c1d010d96afb4b53334/f844a7b45ca5a9589ffaa1a5bd8dea0f4e79f0e2ff639c1d010d96afb4b53334-json.log
+</span><span md-src-pos="1691..1694"></span></code></pre>
+   <hr>
+   <h1 id="porta-application-container" md-src-pos="1701..1730">Porta Application Container</h1>
+   <ul md-src-pos="1731..1787">
+    <li md-src-pos="1731..1756">Container name: <code md-src-pos="1749..1756">porta</code></li>
+    <li md-src-pos="1757..1787">Ports: 8080 (UI), 8000 (API)</li>
+   </ul>
+   <h2 id="cli-access" md-src-pos="1789..1802">CLI Access</h2>
+   <pre class="code-fence" md-src-pos="1803..1841"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2g=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="1803..1841"><a class="run-icon code-block" href="#" role="button" data-command="Run:353827da357c870fc1b9a78b6a5791d8" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="1803..1811"></span><span md-src-pos="1811..1838">docker exec -it porta bash
+</span><span md-src-pos="1838..1841"></span></code></pre>
+   <h2 id="installer-logs" md-src-pos="1843..1860">Installer Logs</h2>
+   <p md-src-pos="1861..1950"><span md-src-pos="1861..1914">Porta installer logs are located in the WSL directory</span>: <code md-src-pos="1916..1950">/home/$USER/porta/logs/installer</code></p>
+   <h2 id="configuration-files" md-src-pos="1952..1974">Configuration Files</h2>
+   <h3 id="nginx-configuration" md-src-pos="1975..1998">Nginx Configuration</h3>
+   <ul md-src-pos="1999..2183">
+    <li md-src-pos="1999..2183">nginx.conf file: <code md-src-pos="2018..2054">/etc/nginx/sites-available/default</code>
+     <ul md-src-pos="2057..2183">
+      <li md-src-pos="2057..2132"><code md-src-pos="2059..2131">docker exec -it porta bash -c "cat /etc/nginx/sites-available/default"</code></li>
+      <li md-src-pos="2135..2183">Defaults:
+       <ul md-src-pos="2152..2183">
+        <li md-src-pos="2152..2183"><code md-src-pos="2154..2183">client_max_body_size 1024M;</code></li>
+       </ul></li>
+     </ul></li>
+   </ul>
+   <h4 id="supervisor-configuration" md-src-pos="2185..2214">Supervisor Configuration</h4>
+   <ul md-src-pos="2215..2326">
+    <li md-src-pos="2215..2326">supervisor.conf file: <code md-src-pos="2239..2262">/etc/supervisord.conf</code>
+     <ul md-src-pos="2265..2326">
+      <li md-src-pos="2265..2326"><code md-src-pos="2267..2326">docker exec -it porta bash -c "cat /etc/supervisord.conf"</code></li>
+     </ul></li>
+   </ul>
+   <h3 id="php-configuration" md-src-pos="2328..2349">PHP Configuration</h3>
+   <ul md-src-pos="2350..2553">
+    <li md-src-pos="2350..2553">PHP INI file: <code md-src-pos="2366..2401">/usr/local/etc/php/conf.d/app.ini</code>
+     <ul md-src-pos="2404..2553">
+      <li md-src-pos="2404..2477"><code md-src-pos="2406..2477">docker exec -it porta bash -c "cat /usr/local/etc/php/conf.d/app.ini"</code></li>
+      <li md-src-pos="2480..2553">Defaults:
+       <ul md-src-pos="2496..2553">
+        <li md-src-pos="2496..2519"><code md-src-pos="2498..2519">post_max_size=1024M</code></li>
+        <li md-src-pos="2524..2553"><code md-src-pos="2526..2553">upload_max_filesize=1000M</code></li>
+       </ul></li>
+     </ul></li>
+   </ul>
+   <h3 id="porta-api-configuration" md-src-pos="2555..2582">Porta API Configuration</h3>
+   <ul md-src-pos="2583..3245">
+    <li md-src-pos="2583..2607">API files: <code md-src-pos="2596..2607">/var/www/</code></li>
+    <li md-src-pos="2608..2696">API environment file: <code md-src-pos="2632..2647">/var/www/.env</code>
+     <ul md-src-pos="2650..2696">
+      <li md-src-pos="2650..2696"><code md-src-pos="2654..2696">docker exec -it porta bash -c "cat .env"</code></li>
+     </ul></li>
+    <li md-src-pos="2697..3112">API Config files (for Laravel): <code md-src-pos="2731..2748">/var/www/config</code>
+     <ul md-src-pos="2751..3112">
+      <li md-src-pos="2751..2799">Services (Bridge, etc.): <code md-src-pos="2778..2799">config/services.php</code></li>
+      <li md-src-pos="2802..2835">Database: <code md-src-pos="2814..2835">config/database.php</code></li>
+      <li md-src-pos="2838..2868">Backups: <code md-src-pos="2849..2868">config/backup.php</code></li>
+      <li md-src-pos="2871..3112">Media: <code md-src-pos="2880..2906">config/media-library.php</code>
+       <ul md-src-pos="2911..3112">
+        <li md-src-pos="2911..3112">Defaults:
+         <ul md-src-pos="2930..3112">
+          <li md-src-pos="2930..2982"><code md-src-pos="2932..2982">'max_file_size' =&gt; 1024 * 1024 * 1000, // 1000MB</code></li>
+          <li md-src-pos="2989..3020"><code md-src-pos="2991..3020">'image_driver' =&gt; 'imagick'</code></li>
+          <li md-src-pos="3027..3065"><code md-src-pos="3029..3065">'ffmpeg_path' =&gt; '/usr/bin/ffmpeg'</code></li>
+          <li md-src-pos="3072..3112"><code md-src-pos="3074..3112">'ffprobe_path' =&gt; '/usr/bin/ffprobe'</code></li>
+         </ul></li>
+       </ul></li>
+     </ul></li>
+    <li md-src-pos="3113..3245">API cached configuration: <code md-src-pos="3141..3178">/var/www/bootstrap/cache/config.php</code>
+     <ul md-src-pos="3181..3245">
+      <li md-src-pos="3181..3245">docker exec -it porta bash -c "cat bootstrap/cache/config.php"</li>
+     </ul></li>
+   </ul>
+   <h3 id="porta-ui-configuration" md-src-pos="3248..3274">Porta UI Configuration</h3>
+   <ul md-src-pos="3275..3424">
+    <li md-src-pos="3275..3313">Front End files: <code md-src-pos="3294..3313">/var/www/frontend</code></li>
+    <li md-src-pos="3314..3424">Front End environment file: <code md-src-pos="3344..3368">/var/www/frontend/.env</code>
+     <ul md-src-pos="3371..3424">
+      <li md-src-pos="3371..3424"><code md-src-pos="3373..3424">docker exec -it porta bash -c "cat frontend/.env"</code></li>
+     </ul></li>
+   </ul>
+   <h2 id="logs" md-src-pos="3427..3434">Logs</h2>
+   <h3 id="porta-api-logs" md-src-pos="3435..3453">Porta API Logs</h3>
+   <ul md-src-pos="3454..4166">
+    <li md-src-pos="3454..3714">Default API error logs location: <code md-src-pos="3489..3512">/var/www/storage/logs</code>
+     <ul md-src-pos="3515..3714">
+      <li md-src-pos="3515..3618"><em md-src-pos="3517..3618">Note: The log filenames will be scoped by date, i.e. <code md-src-pos="3571..3617">/var/www/storage/logs/laravel-YYYY-MM-DD.log</code></em></li>
+      <li md-src-pos="3621..3714"><code md-src-pos="3623..3714">docker exec -it porta bash -c "cat /var/www/storage/logs/laravel-$(date +'%Y-%m-%d').log"</code></li>
+     </ul></li>
+    <li md-src-pos="3715..3758">PHP error logs: <code md-src-pos="3733..3758">/var/log/php/errors.log</code></li>
+    <li md-src-pos="3759..3863">Queue logs (for play group sequence): <code md-src-pos="3799..3832">/var/www/logs/default_queue.log</code> <em md-src-pos="3833..3863">Entries should end in <code md-src-pos="3856..3862">DONE</code></em></li>
+    <li md-src-pos="3864..3955">Tasks logs (for scheduled tasks like database backups): <code md-src-pos="3922..3955">/var/www/logs/default_tasks.log</code></li>
+    <li md-src-pos="3956..4017">Horizon logs (queue dashboard): <code md-src-pos="3990..4017">/var/www/logs/horizon.log</code></li>
+    <li md-src-pos="4018..4166">UI logs: can be viewed in the Web Browser console
+     <ul md-src-pos="4073..4166">
+      <li md-src-pos="4073..4166"><em md-src-pos="4075..4166">To access the logs, open the browser's developer tools (F12) and select the <code md-src-pos="4152..4161">Console</code> tab</em></li>
+     </ul></li>
+   </ul>
+   <p md-src-pos="4169..4265"><span md-src-pos="4169..4175">Normal</span> <code md-src-pos="4176..4182">Logs</code> <span md-src-pos="4183..4264">content on container startup displayed in the docker logs UI will look similar to</span>:</p>
+   <pre class="code-fence" md-src-pos="4266..5136"><div class="code-fence-highlighter-copy-button" data-fence-content="SU5GTyBzdXBlcnZpc29yZCBzdGFydGVkIHdpdGggcGlkIDEKSU5GTyBzcGF3bmVkOiAnbmdpbngnIHdpdGggcGlkIDcKSU5GTyBzcGF3bmVkOiAncGhwLWZwbScgd2l0aCBwaWQgOApJTkZPIHNwYXduZWQ6ICdwb3J0YS1ob3Jpem9uLXdvcmtlcl8wMCcgd2l0aCBwaWQgOQpJTkZPIHNwYXduZWQ6ICdwb3J0YS1ob3Jpem9uLXdvcmtlcl8wMScgd2l0aCBwaWQgMTAKSU5GTyBzdWNjZXNzOiBuZ2lueCBlbnRlcmVkIFJVTk5JTkcgc3RhdGUsIHByb2Nlc3MgaGFzIHN0YXllZCB1cCBmb3IgPiB0aGFuIDEgc2Vjb25kcyAoc3RhcnRzZWNzKQpJTkZPIHN1Y2Nlc3M6IHBocC1mcG0gZW50ZXJlZCBSVU5OSU5HIHN0YXRlLCBwcm9jZXNzIGhhcyBzdGF5ZWQgdXAgZm9yID4gdGhhbiAxIHNlY29uZHMgKHN0YXJ0c2VjcykKSU5GTyBzdWNjZXNzOiBwb3J0YS1ob3Jpem9uLXdvcmtlcl8wMCBlbnRlcmVkIFJVTk5JTkcgc3RhdGUsIHByb2Nlc3MgaGFzIHN0YXllZCB1cCBmb3IgPiB0aGFuIDEgc2Vjb25kcyAoc3RhcnRzZWNzKQpJTkZPIHN1Y2Nlc3M6IHBvcnRhLWhvcml6b24td29ya2VyXzAxIGVudGVyZWQgUlVOTklORyBzdGF0ZSwgcHJvY2VzcyBoYXMgc3RheWVkIHVwIGZvciA+IHRoYW4gMSBzZWNvbmRzIChzdGFydHNlY3MpCklORk8gc3VjY2VzczogcG9ydGEtdGFzay13b3JrZXJfMDAgZW50ZXJlZCBSVU5OSU5HIHN0YXRlLCBwcm9jZXNzIGhhcyBzdGF5ZWQgdXAgZm9yID4gdGhhbiAxIHNlY29uZHMgKHN0YXJ0c2VjcykKSU5GTyBzdWNjZXNzOiBwb3J0YS10YXNrLXdvcmtlcl8wMSBlbnRlcmVkIFJVTk5JTkcgc3RhdGUsIHByb2Nlc3MgaGFzIHN0YXllZCB1cCBmb3IgPiB0aGFuIDEgc2Vjb25kcyAoc3RhcnRzZWNzKQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="4266..5136"><span md-src-pos="4266..4270"></span><span md-src-pos="4270..4306">INFO supervisord started with pid 1
+</span><span md-src-pos="4306..4339">INFO spawned: 'nginx' with pid 7
+</span><span md-src-pos="4339..4374">INFO spawned: 'php-fpm' with pid 8
+</span><span md-src-pos="4374..4425">INFO spawned: 'porta-horizon-worker_00' with pid 9
+</span><span md-src-pos="4425..4477">INFO spawned: 'porta-horizon-worker_01' with pid 10
+</span><span md-src-pos="4477..4578">INFO success: nginx entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="4578..4681">INFO success: php-fpm entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="4681..4800">INFO success: porta-horizon-worker_00 entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="4800..4919">INFO success: porta-horizon-worker_01 entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="4919..5035">INFO success: porta-task-worker_00 entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="5035..5151">INFO success: porta-task-worker_01 entered RUNNING state, process has stayed up for &gt; than 1 seconds (startsecs)
+</span><span md-src-pos="5133..5136"></span></code></pre>
+   <h2 id="commands" md-src-pos="5138..5149">Commands</h2>
+   <h3 id="view-porta-version" md-src-pos="5151..5173">View Porta Version</h3>
+   <pre class="code-fence" md-src-pos="5174..5243"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGNoZWNrOnZlcnNpb24i">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="5174..5243"><a class="run-icon code-block" href="#" role="button" data-command="Run:1e96e6e3bd7cf32ae709b70e625cc4c6" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="5174..5182"></span><span md-src-pos="5182..5212">docker exec -it porta bash -c </span><span md-src-pos="5212..5213" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="5213..5238" style="color: rgb(122, 248, 202);">php artisan check:version</span><span md-src-pos="5238..5239" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="5239..5240">
+</span><span md-src-pos="5240..5243"></span></code></pre>
+   <p md-src-pos="5244..5259"><span md-src-pos="5244..5258">Result Example</span>:</p>
+   <pre class="code-fence" md-src-pos="5260..6993"><div class="code-fence-highlighter-copy-button" data-fence-content="Ky0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKfCBOYW1lICAgICAgICAgICAgICAgICB8IEluZm8gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKfCBQb3J0YSBNYWNoaW5lICAgICAgICB8IG1haW4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBQb3J0YSBWZXJzaW9uICAgICAgICB8IDIuMy4xMy1mZWF0dXJlcy9kZXYtUE4tOTc5LWJhY2t1cHMrMDAwMzQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBQb3J0YSBWZXJzaW9uIE51bWJlciB8IDIuMy4xMyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBQb3J0YSBCdWlsZCAgICAgICAgICB8IDAwMDM0ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBQb3J0YSBWZXJzaW9uIERhdGUgICB8IDIwMjQtMDEtMjMgMTE6NTU6MTEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBMYXJhdmVsICAgICAgICAgICAgICB8IDkuMzMuMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBQSFAgICAgICAgICAgICAgICAgICB8IDguMS4yNyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBNeVNRTCAgICAgICAgICAgICAgICB8IDguMC4zMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBSZWRpcyAgICAgICAgICAgICAgICB8IEVSUk9SIC0tIE5PVCBBVkFJTEFCTEUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBPUyAgICAgICAgICAgICAgICAgICB8IExpbnV4IDk5OGM4MGE5ZDFkNCA1LjE1LjEzMy4xLW1pY3Jvc29mdC1zdGFuZGFyZC1XU0wyICMxIFNNUCBUaHUgT2N0IDUgMjE6MDI6NDIgVVRDIDIwMjMgeDg2XzY0IHwKKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSs=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="5260..6993"><a class="run-icon code-block" href="#" role="button" data-command="Run:47e55a94e92cad85ec6f3e4394a2e1cb" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="5260..5268"></span><span md-src-pos="5268..5391">+----------------------+-------------------------------------------------------------------------------------------------+
+</span><span md-src-pos="5391..5514">| Name                 | Info                                                                                            |
+</span><span md-src-pos="5514..5637">+----------------------+-------------------------------------------------------------------------------------------------+
+</span><span md-src-pos="5637..5760">| Porta Machine        | main                                                                                            |
+</span><span md-src-pos="5760..5883">| Porta Version        | 2.3.13-features/dev-PN-979-backups+00034                                                        |
+</span><span md-src-pos="5883..6006">| Porta Version Number | 2.3.13                                                                                          |
+</span><span md-src-pos="6006..6031">| Porta Build          | </span><span md-src-pos="6031..6036" style="color: rgb(255, 150, 104);">00034</span><span md-src-pos="6036..6129">                                                                                           |
+</span><span md-src-pos="6129..6252">| Porta Version Date   | 2024-01-23 11:55:11                                                                             |
+</span><span md-src-pos="6252..6375">| Laravel              | 9.33.0                                                                                          |
+</span><span md-src-pos="6375..6498">| PHP                  | 8.1.27                                                                                          |
+</span><span md-src-pos="6498..6621">| MySQL                | 8.0.32                                                                                          |
+</span><span md-src-pos="6621..6744">| Redis                | ERROR -- NOT AVAILABLE                                                                          |
+</span><span md-src-pos="6744..6823">| OS                   | Linux 998c80a9d1d4 5.15.133.1-microsoft-standard-WSL2 </span><span md-src-pos="6823..6866" style="color: rgb(126, 142, 218);">#1 SMP Thu Oct 5 21:02:42 UTC 2023 x86_64 |</span><span md-src-pos="6866..6867">
+</span><span md-src-pos="6867..6990">+----------------------+-------------------------------------------------------------------------------------------------+
+</span><span md-src-pos="6990..6993"></span></code></pre>
+   <h3 id="check-for-primary-database-connection" md-src-pos="6995..7036">Check for Primary Database Connection</h3>
+   <pre class="code-fence" md-src-pos="7037..7218"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGhlYWx0aDpzaW5nbGUtY2hlY2sgJ1ByaW1hcnlEYXRhYmFzZUNvbm5lY3Rpb25DaGVjaycgLS1kby1ub3Qtc3RvcmUtcmVzdWx0cyAtLW5vLW5vdGlmaWNhdGlvbiAtLWZhaWwtY29tbWFuZC1vbi1mYWlsaW5nLWNoZWNrIg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="7037..7218"><a class="run-icon code-block" href="#" role="button" data-command="Run:48cae05245b7f0c41ccbf7fee73a2a16" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="7037..7045"></span><span md-src-pos="7045..7075">docker exec -it porta bash -c </span><span md-src-pos="7075..7076" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7076..7213" style="color: rgb(122, 248, 202);">php artisan health:single-check 'PrimaryDatabaseConnectionCheck' --do-not-store-results --no-notification --fail-command-on-failing-check</span><span md-src-pos="7213..7214" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7214..7215">
+</span><span md-src-pos="7215..7218"></span></code></pre>
+   <p md-src-pos="7219..7234"><span md-src-pos="7219..7233">Result Example</span>:</p>
+   <pre class="code-fence" md-src-pos="7235..7405"><div class="code-fence-highlighter-copy-button" data-fence-content="UnVubmluZyBoZWFsdGggY2hlY2suLi4KClJ1bm5pbmcgY2hlY2s6IFByaW1hcnkgRGF0YWJhc2UgQ29ubmVjdGlvbi4uLgpPazogRm91bmQgb25saW5lIHByaW1hcnk6IHsibWVtYmVyX2hvc3QiOiIxOTIuMTY4LjUwLjQyIiwibWVtYmVyX3BvcnQiOjMzMDh9CgpBbGwgZG9uZSE=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="7235..7405"><a class="run-icon code-block" href="#" role="button" data-command="Run:47c63105c02dc9e63b4bac42dfd07b5c" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="7235..7243"></span><span md-src-pos="7243..7267">Running health check...
+</span><span md-src-pos="7267..7268">
+</span><span md-src-pos="7268..7314">Running check: Primary Database Connection...
+</span><span md-src-pos="7314..7340">Ok: Found online primary: </span><span md-src-pos="7340..7341" style="color: rgb(127, 218, 255);">{</span><span md-src-pos="7341..7342" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7342..7353" style="color: rgb(122, 248, 202);">member_host</span><span md-src-pos="7353..7354" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7354..7355">:</span><span md-src-pos="7355..7356" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7356..7369" style="color: rgb(122, 248, 202);">192.168.50.42</span><span md-src-pos="7369..7370" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7370..7371">,</span><span md-src-pos="7371..7372" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7372..7383" style="color: rgb(122, 248, 202);">member_port</span><span md-src-pos="7383..7384" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7384..7389">:3308</span><span md-src-pos="7389..7390" style="color: rgb(127, 218, 255);">}</span><span md-src-pos="7390..7391">
+</span><span md-src-pos="7391..7392">
+</span><span md-src-pos="7392..7402">All done!
+</span><span md-src-pos="7402..7405"></span></code></pre>
+   <h3 id="check-portas-active-database-connection" md-src-pos="7407..7451">Check Porta's active database connection</h3>
+   <pre class="code-fence" md-src-pos="7452..7519"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgImNhdCAuZW52IHwgZ3JlcCBEQl9IT1NUIg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="7452..7519"><a class="run-icon code-block" href="#" role="button" data-command="Run:7925b102dc4bb29ce7c92291bad4bd5" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="7452..7460"></span><span md-src-pos="7460..7490">docker exec -it porta bash -c </span><span md-src-pos="7490..7491" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7491..7514" style="color: rgb(122, 248, 202);">cat .env | grep DB_HOST</span><span md-src-pos="7514..7515" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="7515..7516">
+</span><span md-src-pos="7516..7519"></span></code></pre>
+   <p md-src-pos="7520..7555"><span md-src-pos="7520..7554">This will result in something like</span>:</p>
+   <pre class="code-fence" md-src-pos="7556..7665"><div class="code-fence-highlighter-copy-button" data-fence-content="REJfSE9TVF8xPTE5Mi4xNjguNTAuMTYzCkRCX0hPU1RfMj0xOTIuMTY4LjUwLjIwCkRCX0hPU1RfMz0xOTIuMTY4LjUwLjQyCkRCX0hPU1Q9IiR7REJfSE9TVF8zfSI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-dotenv" md-src-pos="7556..7665"><span md-src-pos="7556..7566"></span><span md-src-pos="7566..7575" style="color: rgb(186, 172, 255);">DB_HOST_1</span><span md-src-pos="7575..7576" style="color: rgb(186, 172, 255);">=</span><span md-src-pos="7576..7590" style="color: rgb(122, 248, 202);">192.168.50.163</span><span md-src-pos="7590..7591">
+</span><span md-src-pos="7591..7600" style="color: rgb(186, 172, 255);">DB_HOST_2</span><span md-src-pos="7600..7601" style="color: rgb(186, 172, 255);">=</span><span md-src-pos="7601..7614" style="color: rgb(122, 248, 202);">192.168.50.20</span><span md-src-pos="7614..7615">
+</span><span md-src-pos="7615..7624" style="color: rgb(186, 172, 255);">DB_HOST_3</span><span md-src-pos="7624..7625" style="color: rgb(186, 172, 255);">=</span><span md-src-pos="7625..7638" style="color: rgb(122, 248, 202);">192.168.50.42</span><span md-src-pos="7638..7639">
+</span><span md-src-pos="7639..7646" style="color: rgb(186, 172, 255);">DB_HOST</span><span md-src-pos="7646..7647" style="color: rgb(186, 172, 255);">=</span><span md-src-pos="7647..7648">"</span><span md-src-pos="7648..7660" style="color: rgb(122, 248, 202);">${DB_HOST_3}</span><span md-src-pos="7660..7662">"
+</span><span md-src-pos="7662..7665"></span></code></pre>
+   <p md-src-pos="7667..7765"><span md-src-pos="7667..7670">The</span> <code md-src-pos="7671..7680">DB_HOST</code> <span md-src-pos="7681..7727">variable should be set to the primary database</span>'<span md-src-pos="7728..7729">s</span> <code md-src-pos="7730..7741">DB_HOST_#</code> <span md-src-pos="7742..7765">variable or IP address.</span></p>
+   <p md-src-pos="7767..7952"><em md-src-pos="7767..7952">In this example, the primary database has a <code md-src-pos="7812..7825">MEMBER_HOST</code> of 192.168.50.163, which is the value of <code md-src-pos="7867..7878">DB_HOST_1</code>. So <code md-src-pos="7883..7892">DB_HOST</code> should actually be set to <code md-src-pos="7919..7930">DB_HOST_1</code> and not <code md-src-pos="7939..7950">DB_HOST_3</code>.</em></p>
+   <p md-src-pos="7954..8010"><span md-src-pos="7954..8010">Cross-reference this with the cached configuration file.</span></p>
+   <pre class="code-fence" md-src-pos="8011..8120"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgImNhdCBib290c3RyYXAvY2FjaGUvY29uZmlnLnBocCB8IGdyZXAgLUIgMiBcIidkZWZhdWx0JyA9PiAnbXlzcVwiIg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="8011..8120"><a class="run-icon code-block" href="#" role="button" data-command="Run:316f9f7e58adc7a021210d252fccd14" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="8011..8019"></span><span md-src-pos="8019..8049">docker exec -it porta bash -c </span><span md-src-pos="8049..8050" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8050..8115" style="color: rgb(122, 248, 202);">cat bootstrap/cache/config.php | grep -B 2 \"'default' =&gt; 'mysq\"</span><span md-src-pos="8115..8116" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8116..8117">
+</span><span md-src-pos="8117..8120"></span></code></pre>
+   <p md-src-pos="8121..8156"><span md-src-pos="8121..8155">This will result in something like</span>:</p>
+   <pre class="code-fence" md-src-pos="8157..8224"><div class="code-fence-highlighter-copy-button" data-fence-content="J2RhdGFiYXNlJyA9PiAKICBhcnJheSAoCiAgICAnZGVmYXVsdCcgPT4gJ215c3FsLTMnLA==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-php" md-src-pos="8157..8224"><span md-src-pos="8157..8164"></span><span md-src-pos="8164..8168">    </span><span md-src-pos="8168..8169" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8169..8177" style="color: rgb(122, 248, 202);">database</span><span md-src-pos="8177..8178" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8178..8179"> </span><span md-src-pos="8179..8181" style="color: rgb(186, 172, 255);">=&gt;</span><span md-src-pos="8181..8183">
+</span><span md-src-pos="8183..8185">  </span><span md-src-pos="8185..8190" style="color: rgb(186, 172, 255);">array</span><span md-src-pos="8190..8191"> </span><span md-src-pos="8191..8192" style="color: rgb(180, 194, 240);">(</span><span md-src-pos="8192..8193">
+</span><span md-src-pos="8193..8197">    </span><span md-src-pos="8197..8198" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8198..8205" style="color: rgb(122, 248, 202);">default</span><span md-src-pos="8205..8206" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8206..8207"> </span><span md-src-pos="8207..8209" style="color: rgb(186, 172, 255);">=&gt;</span><span md-src-pos="8209..8210"> </span><span md-src-pos="8210..8211" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8211..8218" style="color: rgb(122, 248, 202);">mysql-3</span><span md-src-pos="8218..8219" style="color: rgb(122, 248, 202);">'</span><span md-src-pos="8219..8220" style="color: rgb(180, 194, 240);">,</span><span md-src-pos="8220..8221">
+</span><span md-src-pos="8221..8224"></span></code></pre>
+   <p md-src-pos="8226..8335"><span md-src-pos="8226..8238">The value of</span> <code md-src-pos="8239..8253">'default' =&gt;</code> <span md-src-pos="8254..8335">should match the primary connection name listed in the database status dashboard.</span></p>
+   <h3 id="general-database-connection-check" md-src-pos="8338..8375">General Database Connection Check</h3>
+   <pre class="code-fence" md-src-pos="8376..8529"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGhlYWx0aDpzaW5nbGUtY2hlY2sgJ2RiJyAtLWRvLW5vdC1zdG9yZS1yZXN1bHRzIC0tbm8tbm90aWZpY2F0aW9uIC0tZmFpbC1jb21tYW5kLW9uLWZhaWxpbmctY2hlY2si">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="8376..8529"><a class="run-icon code-block" href="#" role="button" data-command="Run:4831901b934db12b2d38ea7c58543e58" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="8376..8384"></span><span md-src-pos="8384..8414">docker exec -it porta bash -c </span><span md-src-pos="8414..8415" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8415..8524" style="color: rgb(122, 248, 202);">php artisan health:single-check 'db' --do-not-store-results --no-notification --fail-command-on-failing-check</span><span md-src-pos="8524..8525" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8525..8526">
+</span><span md-src-pos="8526..8529"></span></code></pre>
+   <h3 id="cache-a-configuration-change" md-src-pos="8531..8563">Cache a configuration change</h3>
+   <p md-src-pos="8564..8694"><span md-src-pos="8564..8567">You</span>'<span md-src-pos="8568..8605">d need to run this after changing the</span> <span md-src-pos="8606..8616">.env file,</span> <span md-src-pos="8617..8694">which itself should only be changed with the guidance of a Disguise engineer.</span></p>
+   <pre class="code-fence" md-src-pos="8695..8763"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGNvbmZpZzpjYWNoZSI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="8695..8763"><a class="run-icon code-block" href="#" role="button" data-command="Run:1ecbcbb21c0335bfbce4f88555c9989" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="8695..8703"></span><span md-src-pos="8703..8733">docker exec -it porta bash -c </span><span md-src-pos="8733..8734" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8734..8758" style="color: rgb(122, 248, 202);">php artisan config:cache</span><span md-src-pos="8758..8759" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8759..8760">
+</span><span md-src-pos="8760..8763"></span></code></pre>
+   <h3 id="check-the-database-members" md-src-pos="8765..8795">Check the Database Members</h3>
+   <p md-src-pos="8796..8805"><span md-src-pos="8796..8804">View all</span>:</p>
+   <pre class="code-fence" md-src-pos="8806..8974"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGhlYWx0aDpzaW5nbGUtY2hlY2sgJ015c3FsQ2x1c3RlckNoZWNrJyAtLWRvLW5vdC1zdG9yZS1yZXN1bHRzIC0tbm8tbm90aWZpY2F0aW9uIC0tZmFpbC1jb21tYW5kLW9uLWZhaWxpbmctY2hlY2si">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="8806..8974"><a class="run-icon code-block" href="#" role="button" data-command="Run:4e0f2ca49eb9fc58c8b79babac982b58" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="8806..8814"></span><span md-src-pos="8814..8844">docker exec -it porta bash -c </span><span md-src-pos="8844..8845" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8845..8969" style="color: rgb(122, 248, 202);">php artisan health:single-check 'MysqlClusterCheck' --do-not-store-results --no-notification --fail-command-on-failing-check</span><span md-src-pos="8969..8970" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="8970..8971">
+</span><span md-src-pos="8971..8974"></span></code></pre>
+   <p md-src-pos="8976..8993"><span md-src-pos="8976..8992">View this member</span>:</p>
+   <pre class="code-fence" md-src-pos="8994..9165"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGhlYWx0aDpzaW5nbGUtY2hlY2sgJ015c3FsTm9kZVN0YXR1c0NoZWNrJyAtLWRvLW5vdC1zdG9yZS1yZXN1bHRzIC0tbm8tbm90aWZpY2F0aW9uIC0tZmFpbC1jb21tYW5kLW9uLWZhaWxpbmctY2hlY2si">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="8994..9165"><a class="run-icon code-block" href="#" role="button" data-command="Run:690e5bb0024195c4ec90beb609535c86" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="8994..9002"></span><span md-src-pos="9002..9032">docker exec -it porta bash -c </span><span md-src-pos="9032..9033" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9033..9160" style="color: rgb(122, 248, 202);">php artisan health:single-check 'MysqlNodeStatusCheck' --do-not-store-results --no-notification --fail-command-on-failing-check</span><span md-src-pos="9160..9161" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9161..9162">
+</span><span md-src-pos="9162..9165"></span></code></pre>
+   <h3 id="manually-create-a-database-backup" md-src-pos="9168..9205">Manually Create a Database Backup</h3>
+   <h4 id="using-the-backup-tool-recommended" md-src-pos="9206..9246">Using the Backup Tool (Recommended)</h4>
+   <p md-src-pos="9247..9433"><span md-src-pos="9247..9290">The resulting backup will be located in the</span> <code md-src-pos="9291..9298">porta</code> <span md-src-pos="9299..9308">container</span> <span md-src-pos="9309..9354">/var/www/storage/app/Porta-Backups directory,</span> <span md-src-pos="9355..9371">with a name like</span> <code md-src-pos="9372..9433">machine_type-machine-connection_name-backup-Y-m-d-H-i-s.zip</code></p>
+   <pre class="code-fence" md-src-pos="9434..9534"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIGJhY2t1cDpydW4gLS1vbmx5LWRiIC0tZGlzYWJsZS1ub3RpZmljYXRpb25zIg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="9434..9534"><a class="run-icon code-block" href="#" role="button" data-command="Run:7918e7b3364b1341a41e2d54ba1671bd" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="9434..9442"></span><span md-src-pos="9442..9472">docker exec -it porta bash -c </span><span md-src-pos="9472..9473" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9473..9529" style="color: rgb(122, 248, 202);">php artisan backup:run --only-db --disable-notifications</span><span md-src-pos="9529..9530" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9530..9531">
+</span><span md-src-pos="9531..9534"></span></code></pre>
+   <h4 id="using-the-mysqldump-command" md-src-pos="9536..9570">Using the <code md-src-pos="9551..9562">mysqldump</code> command</h4>
+   <p md-src-pos="9571..9706"><span md-src-pos="9571..9614">The resulting backup will be located in the</span> <code md-src-pos="9615..9625">porta-db</code> <span md-src-pos="9626..9651">container root directory,</span> <span md-src-pos="9652..9668">with a name like</span> <code md-src-pos="9669..9706">MANUAL-porta-backup-Y-m-d-H-i-s.sql</code></p>
+   <h3 id="restoring-a-database-backup" md-src-pos="9708..9739">Restoring a Database Backup</h3>
+   <p md-src-pos="9740..9807"><span md-src-pos="9740..9743">See</span> <a href="file:/wsl$/Ubuntu-22.04/home/jessd/code/porta-api/offline/install/docs/restoring-a-database-backup.html" md-src-pos="9744..9807">Restoring a Database Backup</a></p>
+   <h3 id="view-failed-jobs" md-src-pos="9809..9829">View failed jobs</h3>
+   <pre class="code-fence" md-src-pos="9830..9898"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInBocCBhcnRpc2FuIHF1ZXVlOmZhaWxlZCI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="9830..9898"><a class="run-icon code-block" href="#" role="button" data-command="Run:5a3fba38fcec296b5b010ecb89b1000a" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="9830..9838"></span><span md-src-pos="9838..9868">docker exec -it porta bash -c </span><span md-src-pos="9868..9869" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9869..9893" style="color: rgb(122, 248, 202);">php artisan queue:failed</span><span md-src-pos="9893..9894" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="9894..9895">
+</span><span md-src-pos="9895..9898"></span></code></pre>
+   <h3 id="rebuild-the-front-end" md-src-pos="9901..9926">Rebuild the front end</h3>
+   <p md-src-pos="9927..10049"><span md-src-pos="9927..9930">You</span>'<span md-src-pos="9931..9968">d want to run this after changing the</span> <code md-src-pos="9969..9984">frontend/.env</code> <span md-src-pos="9985..9990">file.</span><br>
+     ** <span md-src-pos="9996..10003">REPLACE</span> &lt;<span md-src-pos="10005..10025">HOST_MACHINE_ADDRESS</span>&gt; <span md-src-pos="10027..10046">WITH THE MACHINE IP</span> **</p>
+   <pre class="code-fence" md-src-pos="10050..10145"><div class="code-fence-highlighter-copy-button" data-fence-content="UkVBQ1RfQVBQX0JBU0VfVVJMPSdodHRwOi8vPEhPU1RfTUFDSElORV9BRERSRVNTPjo4MDAwJyBucG0gLS1wcmVmaXggZnJvbnRlbmQgcnVuIGJ1aWxk">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="10050..10145"><span md-src-pos="10050..10054"></span><span md-src-pos="10054..10148">REACT_APP_BASE_URL='http://&lt;HOST_MACHINE_ADDRESS&gt;:8000' npm --prefix frontend run build
+</span><span md-src-pos="10142..10145"></span></code></pre>
+   <h3 id="verify-php-config-phpini-location" md-src-pos="10147..10187">Verify PHP config (php.ini) location</h3>
+   <pre class="code-fence" md-src-pos="10188..10275"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgJ3BocCAtciAicHJpbnRfcihwaHBpbmZvKCkpOyIgfCBncmVwIHBocC5pbmkn">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="10188..10275"><a class="run-icon code-block" href="#" role="button" data-command="Run:67f13145be764cec8a5304ceb2bd7069" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="10188..10196"></span><span md-src-pos="10196..10226">docker exec -it porta bash -c </span><span md-src-pos="10226..10271" style="color: rgb(122, 248, 202);">'php -r "print_r(phpinfo());" | grep php.ini'</span><span md-src-pos="10271..10272">
+</span><span md-src-pos="10272..10275"></span></code></pre>
+   <h3 id="find-php-config-by-partial-string" md-src-pos="10277..10314">Find PHP config by partial string</h3>
+   <p md-src-pos="10315..10544"><strong md-src-pos="10315..10323">NOTE</strong>: <span md-src-pos="10325..10388">The config for CLI may be different from the web server config.</span> <span md-src-pos="10389..10394">Setup</span> <code md-src-pos="10395..10416">&lt;?php phpinfo(); ?&gt;</code> <span md-src-pos="10417..10487">in a place to access from the browser to verify the web server config.</span> <span md-src-pos="10488..10495">Replace</span> <code md-src-pos="10496..10506">&lt;string&gt;</code> <span md-src-pos="10507..10544">with the string you are searching for</span></p>
+   <pre class="code-fence" md-src-pos="10545..10633"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgJ3BocCAtciAicHJpbnRfcihwaHBpbmZvKCkpOyIgfCBncmVwIDxzdHJpbmc+Jw==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="10545..10633"><a class="run-icon code-block" href="#" role="button" data-command="Run:4fbafb744e38ab14b7b6b6d97a08fbb0" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="10545..10553"></span><span md-src-pos="10553..10583">docker exec -it porta bash -c </span><span md-src-pos="10583..10629" style="color: rgb(122, 248, 202);">'php -r "print_r(phpinfo());" | grep &lt;string&gt;'</span><span md-src-pos="10629..10630">
+</span><span md-src-pos="10630..10633"></span></code></pre>
+   <h3 id="viewing-server-workers" md-src-pos="10635..10661">Viewing Server Workers</h3>
+   <p md-src-pos="10662..10800"><span md-src-pos="10662..10712">Such as those that process the play group sequence</span> (<code md-src-pos="10714..10736">porta-horizon-worker</code>) <span md-src-pos="10738..10778">or run database checks in the background</span> (<code md-src-pos="10780..10799">porta-task-worker</code>)</p>
+   <pre class="code-fence" md-src-pos="10801..10865"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhIGJhc2ggLWMgInN1cGVydmlzb3JjdGwgc3RhdHVzIg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="10801..10865"><a class="run-icon code-block" href="#" role="button" data-command="Run:4e5472c5f5e18baaea1ab14a25c1fa14" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="10801..10809"></span><span md-src-pos="10809..10839">docker exec -it porta bash -c </span><span md-src-pos="10839..10840" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="10840..10860" style="color: rgb(122, 248, 202);">supervisorctl status</span><span md-src-pos="10860..10861" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="10861..10862">
+</span><span md-src-pos="10862..10865"></span></code></pre>
+   <p md-src-pos="10866..10881"><span md-src-pos="10866..10880">Example result</span>:</p>
+   <pre class="code-fence" md-src-pos="10882..11371"><div class="code-fence-highlighter-copy-button" data-fence-content="bmdpbnggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBSVU5OSU5HICAgcGlkIDcsIHVwdGltZSAwOjE2OjU3CnBocC1mcG0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgUlVOTklORyAgIHBpZCA4LCB1cHRpbWUgMDoxNjo1Nwpwb3J0YS10YXNrLXdvcmtlcjpwb3J0YS10YXNrLXdvcmtlcl8wMCAgIFJVTk5JTkcgICBwaWQgNzQ2LCB1cHRpbWUgMDowMjo1Nwpwb3J0YS10YXNrLXdvcmtlcjpwb3J0YS10YXNrLXdvcmtlcl8wMSAgIFJVTk5JTkcgICBwaWQgNzQ3LCB1cHRpbWUgMDowMjo1Nwpwb3J0YS1ob3Jpem9uLXdvcmtlcjpwb3J0YS1ob3Jpem9uLXdvcmtlcl8wMCAgICAgICAgICAgICBSVU5OSU5HICAgcGlkIDczMiwgdXB0aW1lIDA6MDI6NTkKcG9ydGEtaG9yaXpvbi13b3JrZXI6cG9ydGEtaG9yaXpvbi13b3JrZXJfMDEgICAgICAgICAgICAgUlVOTklORyAgIHBpZCA3MzMsIHVwdGltZSAwOjAyOjU5">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="10882..11371"><a class="run-icon code-block" href="#" role="button" data-command="Run:3d5cb97e497646a5ccd1f599c2b96471" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="10882..10890"></span><span md-src-pos="10890..10963">nginx                                    RUNNING   pid 7, uptime 0:16:57
+</span><span md-src-pos="10963..11036">php-fpm                                  RUNNING   pid 8, uptime 0:16:57
+</span><span md-src-pos="11036..11111">porta-task-worker:porta-task-worker_00   RUNNING   pid 746, uptime 0:02:57
+</span><span md-src-pos="11111..11186">porta-task-worker:porta-task-worker_01   RUNNING   pid 747, uptime 0:02:57
+</span><span md-src-pos="11186..11277">porta-horizon-worker:porta-horizon-worker_00             RUNNING   pid 732, uptime 0:02:59
+</span><span md-src-pos="11277..11368">porta-horizon-worker:porta-horizon-worker_01             RUNNING   pid 733, uptime 0:02:59
+</span><span md-src-pos="11368..11371"></span></code></pre>
+   <hr>
+   <h1 id="porta-database-container" md-src-pos="11379..11405">Porta Database Container</h1>
+   <blockquote md-src-pos="11406..11503">
+    <p md-src-pos="11408..11503"><strong md-src-pos="11408..11416">Note</strong>: <span md-src-pos="11418..11503">The database container name will change depending on which machine you are accessing.</span></p>
+   </blockquote>
+   <ul md-src-pos="11504..11586">
+    <li md-src-pos="11504..11532">Container name: <code md-src-pos="11522..11532">porta-db</code></li>
+    <li md-src-pos="11533..11586">Ports: 3306, 3307, 3308, 33060, 33061, 33062, 33063</li>
+   </ul>
+   <h2 id="cli-access-1" md-src-pos="11588..11601">CLI Access</h2>
+   <pre class="code-fence" md-src-pos="11602..11643"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIGJhc2g=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="11602..11643"><a class="run-icon code-block" href="#" role="button" data-command="Run:546a17f8bf9293dc57758776dc02aaa9" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="11602..11610"></span><span md-src-pos="11610..11640">docker exec -it porta-db bash
+</span><span md-src-pos="11640..11643"></span></code></pre>
+   <p md-src-pos="11645..11843"><em md-src-pos="11645..11843"><strong md-src-pos="11646..11654">NOTE</strong>: Remember to replace container names (<code md-src-pos="11693..11711">&lt;container-name&gt;</code>) with the correct name for the machine you are running the command on, i.e., <code md-src-pos="11789..11801">porta-db-3</code> for the database on the arbiter machine.</em></p>
+   <h2 id="configuration-files-1" md-src-pos="11845..11867">Configuration Files</h2>
+   <ul md-src-pos="11868..11975">
+    <li md-src-pos="11868..11903">Configuration file: <code md-src-pos="11890..11903">/etc/my.cnf</code></li>
+    <li md-src-pos="11904..11975">Data directory (for advanced system administration): <code md-src-pos="11959..11975">/var/lib/mysql</code></li>
+   </ul>
+   <h2 id="logs-1" md-src-pos="11977..11984">Logs</h2>
+   <p md-src-pos="11985..12093"><span md-src-pos="11985..12001">Access container</span>'<span md-src-pos="12002..12056">s general logs by clicking on its name and viewing its</span> <code md-src-pos="12057..12063">Logs</code> <span md-src-pos="12064..12093">menu in the Docker Dashboard.</span></p>
+   <p md-src-pos="12095..12278"><span md-src-pos="12095..12167">You can also access the logs from the WSL CLI with the following command</span> (<span md-src-pos="12169..12176">replace</span> <code md-src-pos="12177..12195">&lt;container-name&gt;</code> <span md-src-pos="12196..12245">with the name of the container you are accessing,</span> <span md-src-pos="12246..12251">i.e.,</span> <code md-src-pos="12252..12276">docker logs porta-db-2</code>):</p>
+   <pre class="code-fence" md-src-pos="12279..12319"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGxvZ3MgPGNvbnRhaW5lci1uYW1lPg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="12279..12319"><a class="run-icon code-block" href="#" role="button" data-command="Run:72f9f20ae50a5e4e490ec1ea122163ca" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="12279..12287"></span><span md-src-pos="12287..12299">docker logs </span><span md-src-pos="12299..12300" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="12300..12314">container-name</span><span md-src-pos="12314..12315" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="12315..12316">
+</span><span md-src-pos="12316..12319"></span></code></pre>
+   <h3 id="commands-1" md-src-pos="12322..12334">Commands</h3>
+   <p md-src-pos="12335..12475"><span md-src-pos="12335..12390">Access the docker container and keep the MySQL CLI open</span> (<span md-src-pos="12392..12440">you will be prompted for the mysql root password</span>) <span md-src-pos="12442..12474">so that you may run SQL commands</span>:</p>
+   <ul md-src-pos="12476..12573">
+    <li md-src-pos="12476..12573"><em md-src-pos="12478..12573">Replace <code md-src-pos="12487..12505">&lt;container-name&gt;</code> with the name of the container you are accessing, i.e., <code md-src-pos="12562..12572">porta-db</code></em></li>
+   </ul>
+   <pre class="code-fence" md-src-pos="12574..12655"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBPcGVuIHRoZSBNeVNRTCBDTEkKZG9ja2VyIGV4ZWMgLWl0IDxjb250YWluZXItbmFtZT4gbXlzcWwgLXVyb290IC1w">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="12574..12655"><a class="run-icon code-block" href="#" role="button" data-command="Run:53dbd2f6db9691e814383775866d7a13" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="12574..12582"></span><span md-src-pos="12582..12602" style="color: rgb(126, 142, 218);"># Open the MySQL CLI</span><span md-src-pos="12602..12603">
+</span><span md-src-pos="12603..12619">docker exec -it </span><span md-src-pos="12619..12620" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="12620..12634">container-name</span><span md-src-pos="12634..12635" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="12635..12652"> mysql -uroot -p
+</span><span md-src-pos="12652..12655"></span></code></pre>
+   <pre class="code-fence" md-src-pos="12656..12781"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBWaWV3IHJlcGxpY2F0aW9uIHN0YXR1cyBvZiB0aGUgbWFjaGluZXMgaW4gdGhlIGdyb3VwClNFTEVDVCAqIEZST00gcGVyZm9ybWFuY2Vfc2NoZW1hLnJlcGxpY2F0aW9uX2dyb3VwX21lbWJlcnM7">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-sql" md-src-pos="12656..12781"><span md-src-pos="12656..12663"></span><span md-src-pos="12663..12717" style="color: rgb(126, 142, 218);"># View replication status of the machines in the group</span><span md-src-pos="12717..12718">
+</span><span md-src-pos="12718..12724" style="color: rgb(186, 172, 255);">SELECT</span><span md-src-pos="12724..12727"> * </span><span md-src-pos="12727..12731" style="color: rgb(186, 172, 255);">FROM</span><span md-src-pos="12731..12750"> performance_schema</span><span md-src-pos="12750..12751" style="color: rgb(180, 194, 240);">.</span><span md-src-pos="12751..12776">replication_group_members</span><span md-src-pos="12776..12777" style="color: rgb(180, 194, 240);">;</span><span md-src-pos="12777..12778">
+</span><span md-src-pos="12778..12781"></span></code></pre>
+   <p md-src-pos="12783..12905"><span md-src-pos="12783..12847">Or access the container and run SQL without keeping the CLI open</span> (<span md-src-pos="12849..12903">you will still be prompted for the mysql root password</span>):</p>
+   <pre class="code-fence" md-src-pos="12906..13135"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBPcGVuIHRoZSBNeVNRTCBDTEkgYW5kIHZpZXcgcmVwbGljYXRpb24gc3RhdHVzIG9mIHRoZSBtYWNoaW5lcyBpbiB0aGUgZ3JvdXAsIHRoZW4gY2xvc2UgdGhlIE15U1FMIENMSQpkb2NrZXIgZXhlYyAtaXQgPGNvbnRhaW5lci1uYW1lPiBteXNxbCAtdXJvb3QgLXAgLWUgIlNFTEVDVCAqIEZST00gcGVyZm9ybWFuY2Vfc2NoZW1hLnJlcGxpY2F0aW9uX2dyb3VwX21lbWJlcnM7Ig==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="12906..13135"><a class="run-icon code-block" href="#" role="button" data-command="Run:63cb9c471fe3a5068e43a6ef7ae5f6cd" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="12906..12914"></span><span md-src-pos="12914..13017" style="color: rgb(126, 142, 218);"># Open the MySQL CLI and view replication status of the machines in the group, then close the MySQL CLI</span><span md-src-pos="13017..13018">
+</span><span md-src-pos="13018..13034">docker exec -it </span><span md-src-pos="13034..13035" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="13035..13049">container-name</span><span md-src-pos="13049..13050" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="13050..13070"> mysql -uroot -p -e </span><span md-src-pos="13070..13071" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13071..13130" style="color: rgb(122, 248, 202);">SELECT * FROM performance_schema.replication_group_members;</span><span md-src-pos="13130..13131" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13131..13132">
+</span><span md-src-pos="13132..13135"></span></code></pre>
+   <p md-src-pos="13137..13354"><strong md-src-pos="13137..13354"><em md-src-pos="13139..13352">For ease of use, <code md-src-pos="13157..13175">&lt;container-name&gt;</code> will be filled in with <code md-src-pos="13199..13209">porta-db</code> in the examples, however this should be replaced with the name of the container you are accessing, i.e., <code md-src-pos="13315..13327">porta-db-3</code> on the arbiter machine.</em></strong></p>
+   <h4 id="view-replication-members" md-src-pos="13356..13385">View Replication Members</h4>
+   <pre class="code-fence" md-src-pos="13386..13503"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0VMRUNUICogRlJPTSBwZXJmb3JtYW5jZV9zY2hlbWEucmVwbGljYXRpb25fZ3JvdXBfbWVtYmVyczsi">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="13386..13503"><a class="run-icon code-block" href="#" role="button" data-command="Run:7517aba1ac5145b2f9255a9fc76b48dc" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="13386..13394"></span><span md-src-pos="13394..13438">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="13438..13439" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13439..13498" style="color: rgb(122, 248, 202);">SELECT * FROM performance_schema.replication_group_members;</span><span md-src-pos="13498..13499" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13499..13500">
+</span><span md-src-pos="13500..13503"></span></code></pre>
+   <h4 id="view-installed-plugins" md-src-pos="13505..13532">View Installed Plugins</h4>
+   <pre class="code-fence" md-src-pos="13533..13605"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0hPVyBQTFVHSU5TOyI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="13533..13605"><a class="run-icon code-block" href="#" role="button" data-command="Run:52a0b2e5aa0f1a64d7189a5dedec587" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="13533..13541"></span><span md-src-pos="13541..13585">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="13585..13586" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13586..13599" style="color: rgb(122, 248, 202);">SHOW PLUGINS;</span><span md-src-pos="13599..13600" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13600..13601">
+</span><span md-src-pos="13601..13605"></span></code></pre>
+   <h4 id="view-a-list-of-available-replication-related-system-variables" md-src-pos="13607..13673">View A List of Available Replication-Related System Variables</h4>
+   <pre class="code-fence" md-src-pos="13674..13841"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0hPVyBHTE9CQUwgVkFSSUFCTEVTIFdIRVJFIHZhcmlhYmxlX25hbWUgTElLRSAnZ3JvdXBfcmVwbCUnIE9SIHZhcmlhYmxlX25hbWUgPSAnc2VydmVyX2lkJyBPUiB2YXJpYWJsZV9uYW1lOyI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="13674..13841"><a class="run-icon code-block" href="#" role="button" data-command="Run:79d5a95053ab98ad114d5d8d8aa226b3" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="13674..13682"></span><span md-src-pos="13682..13726">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="13726..13727" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13727..13836" style="color: rgb(122, 248, 202);">SHOW GLOBAL VARIABLES WHERE variable_name LIKE 'group_repl%' OR variable_name = 'server_id' OR variable_name;</span><span md-src-pos="13836..13837" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="13837..13838">
+</span><span md-src-pos="13838..13841"></span></code></pre>
+   <h5 id="view-specific-replication-related-system-variable" md-src-pos="13843..13898">View Specific Replication-Related System Variable</h5>
+   <p md-src-pos="13899..13977"><span md-src-pos="13899..13906">Replace</span> <code md-src-pos="13907..13924">&lt;variable_name&gt;</code> <span md-src-pos="13925..13977">with the name of the variable you would like to view</span></p>
+   <pre class="code-fence" md-src-pos="13978..14068"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0VMRUNUIEBAZ2xvYmFsLjx2YXJpYWJsZV9uYW1lPjsi">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="13978..14068"><a class="run-icon code-block" href="#" role="button" data-command="Run:44452b972369c0b2fad430177ae96d9e" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="13978..13986"></span><span md-src-pos="13986..14030">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14030..14031" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14031..14063" style="color: rgb(122, 248, 202);">SELECT @@global.&lt;variable_name&gt;;</span><span md-src-pos="14063..14064" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14064..14065">
+</span><span md-src-pos="14065..14068"></span></code></pre>
+   <pre class="code-fence" md-src-pos="14069..14191"><div class="code-fence-highlighter-copy-button" data-fence-content="IyBFeGFtcGxlOiAKZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0VMRUNUIEBAZ2xvYmFsLmdyb3VwX3JlcGxpY2F0aW9uX2V4aXRfc3RhdGVfYWN0aW9uOyI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14069..14191"><a class="run-icon code-block" href="#" role="button" data-command="Run:6da88784643a960907c003246d0564c3" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14069..14077"></span><span md-src-pos="14077..14088" style="color: rgb(126, 142, 218);"># Example: </span><span md-src-pos="14088..14089">
+</span><span md-src-pos="14089..14133">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14133..14134" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14134..14186" style="color: rgb(122, 248, 202);">SELECT @@global.group_replication_exit_state_action;</span><span md-src-pos="14186..14187" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14187..14188">
+</span><span md-src-pos="14188..14191"></span></code></pre>
+   <h4 id="start-group-replication" md-src-pos="14193..14221">Start Group Replication</h4>
+   <pre class="code-fence" md-src-pos="14222..14304"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU1RBUlQgR1JPVVBfUkVQTElDQVRJT047Ig==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14222..14304"><a class="run-icon code-block" href="#" role="button" data-command="Run:47d5469aae10c228997783aadce8cf35" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14222..14230"></span><span md-src-pos="14230..14274">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14274..14275" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14275..14299" style="color: rgb(122, 248, 202);">START GROUP_REPLICATION;</span><span md-src-pos="14299..14300" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14300..14301">
+</span><span md-src-pos="14301..14304"></span></code></pre>
+   <h4 id="stop-group-replication" md-src-pos="14306..14333">Stop Group Replication</h4>
+   <pre class="code-fence" md-src-pos="14334..14415"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU1RPUCBHUk9VUF9SRVBMSUNBVElPTjsi">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14334..14415"><a class="run-icon code-block" href="#" role="button" data-command="Run:43d16dbe75e344d24da9c361531a748e" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14334..14342"></span><span md-src-pos="14342..14386">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14386..14387" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14387..14410" style="color: rgb(122, 248, 202);">STOP GROUP_REPLICATION;</span><span md-src-pos="14410..14411" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14411..14412">
+</span><span md-src-pos="14412..14415"></span></code></pre>
+   <h4 id="view-mysql-users" md-src-pos="14417..14438">View MySQL Users</h4>
+   <pre class="code-fence" md-src-pos="14439..14545"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0VMRUNUIHVzZXIsIGhvc3QgRlJPTSBteXNxbC51c2VyIE9SREVSIEJZIHVzZXI7Ig==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14439..14545"><a class="run-icon code-block" href="#" role="button" data-command="Run:79ae66dd9ba3ae666105d1fae41ce04b" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14439..14447"></span><span md-src-pos="14447..14491">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14491..14492" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14492..14540" style="color: rgb(122, 248, 202);">SELECT user, host FROM mysql.user ORDER BY user;</span><span md-src-pos="14540..14541" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14541..14542">
+</span><span md-src-pos="14542..14545"></span></code></pre>
+   <h4 id="view-last-gtid-executed" md-src-pos="14547..14575">View Last GTID Executed</h4>
+   <pre class="code-fence" md-src-pos="14576..14759"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0hPVyBHTE9CQUwgVkFSSUFCTEVTIExJS0UgJ2d0aWRfZXhlY3V0ZWQnOyIKIyBPUgpkb2NrZXIgZXhlYyAtaXQgcG9ydGEtZGIgbXlzcWwgLXVyb290IC1wIC1lICJTRUxFQ1QgQEBnbG9iYWwuZ3RpZF9leGVjdXRlZDsi">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14576..14759"><a class="run-icon code-block" href="#" role="button" data-command="Run:eef172bfcfa3013a8066e5175c47167" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14576..14584"></span><span md-src-pos="14584..14628">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14628..14629" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14629..14672" style="color: rgb(122, 248, 202);">SHOW GLOBAL VARIABLES LIKE 'gtid_executed';</span><span md-src-pos="14672..14673" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14673..14674">
+</span><span md-src-pos="14674..14678" style="color: rgb(126, 142, 218);"># OR</span><span md-src-pos="14678..14679">
+</span><span md-src-pos="14679..14723">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14723..14724" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14724..14754" style="color: rgb(122, 248, 202);">SELECT @@global.gtid_executed;</span><span md-src-pos="14754..14755" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14755..14756">
+</span><span md-src-pos="14756..14759"></span></code></pre>
+   <h4 id="view-binlog-events" md-src-pos="14761..14784">View Binlog Events</h4>
+   <pre class="code-fence" md-src-pos="14785..14862"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAiU0hPVyBCSU5MT0cgRVZFTlRTOyI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="14785..14862"><a class="run-icon code-block" href="#" role="button" data-command="Run:34524acf7c1e1141c780ef2edb41edb" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="14785..14793"></span><span md-src-pos="14793..14837">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="14837..14838" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14838..14857" style="color: rgb(122, 248, 202);">SHOW BINLOG EVENTS;</span><span md-src-pos="14857..14858" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="14858..14859">
+</span><span md-src-pos="14859..14862"></span></code></pre>
+   <h4 id="view-transaction-history" md-src-pos="14864..14893">View Transaction History</h4>
+   <p md-src-pos="14895..15046"><span md-src-pos="14895..15006">Details of the error and the last successfully applied transaction are recorded in the Performance Schema table</span> <code md-src-pos="15007..15045">replication_applier_status_by_worker</code><span md-src-pos="15045..15046">.</span></p>
+   <pre class="code-fence" md-src-pos="15048..15177"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLWRiIG15c3FsIC11cm9vdCAtcCAtZSAic2VsZWN0ICogZnJvbSBwZXJmb3JtYW5jZV9zY2hlbWEucmVwbGljYXRpb25fYXBwbGllcl9zdGF0dXNfYnlfd29ya2VyXEci">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="15048..15177"><a class="run-icon code-block" href="#" role="button" data-command="Run:55212e76bf21ee9896f5a64626de2596" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="15048..15056"></span><span md-src-pos="15056..15100">docker exec -it porta-db mysql -uroot -p -e </span><span md-src-pos="15100..15101" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="15101..15172" style="color: rgb(122, 248, 202);">select * from performance_schema.replication_applier_status_by_worker\G</span><span md-src-pos="15172..15173" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="15173..15174">
+</span><span md-src-pos="15174..15177"></span></code></pre>
+   <hr>
+   <h1 id="porta-socket-server-container" md-src-pos="15185..15216">Porta Socket Server Container</h1>
+   <ul md-src-pos="15217..15263">
+    <li md-src-pos="15217..15249">Container name: <code md-src-pos="15235..15249">porta-socket</code></li>
+    <li md-src-pos="15250..15263">Ports: 6001</li>
+   </ul>
+   <h2 id="cli-access-2" md-src-pos="15265..15278">CLI Access</h2>
+   <pre class="code-fence" md-src-pos="15279..15324"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLXNvY2tldCBiYXNo">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="15279..15324"><a class="run-icon code-block" href="#" role="button" data-command="Run:7e1fbdce7840f6a03e14f8b462fec9e0" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="15279..15287"></span><span md-src-pos="15287..15321">docker exec -it porta-socket bash
+</span><span md-src-pos="15321..15324"></span></code></pre>
+   <h2 id="files" md-src-pos="15326..15334">Files</h2>
+   <ul md-src-pos="15335..15405">
+    <li md-src-pos="15335..15365">Source files: <code md-src-pos="15351..15365">/usr/src/app</code></li>
+    <li md-src-pos="15366..15405">Environment file: <code md-src-pos="15386..15405">/usr/src/app/.env</code></li>
+   </ul>
+   <h2 id="logs-2" md-src-pos="15407..15414">Logs</h2>
+   <ul md-src-pos="15415..15552">
+    <li md-src-pos="15415..15481">General logs: <code md-src-pos="15431..15481">/tmp/porta-socket-server/porta-socket-server.log</code></li>
+    <li md-src-pos="15482..15552">Error logs: <code md-src-pos="15496..15552">/tmp/porta-socket-server/porta-socket-server-error.log</code></li>
+   </ul>
+   <p md-src-pos="15554..15630"><span md-src-pos="15554..15570">Access container</span>'<span md-src-pos="15571..15594">s general logs with its</span> <code md-src-pos="15595..15601">Logs</code> <span md-src-pos="15602..15630">menu in the Docker Dashboard</span></p>
+   <p md-src-pos="15632..15691"><span md-src-pos="15632..15638">Normal</span> <code md-src-pos="15639..15645">Logs</code> <span md-src-pos="15646..15690">menu content on startup will look similar to</span>:</p>
+   <pre class="code-fence" md-src-pos="15692..16511"><div class="code-fence-highlighter-copy-button" data-fence-content="aW5mbzogc2VydmVyIHN0YXJ0aW5nIHsic2VydmljZSI6InBvcnRhLXNvY2tldC1zZXJ2ZXIiLCJ0aW1lc3RhbXAiOiIyMDIzLTEwLTE2IDE0OjQxOjA1In0KcmVkaXM6IFN0YXJ0aW5nIHNvY2tldElPIHdpdGggUkVESVMgYWRhcHRlciB7InNlcnZpY2UiOiJwb3J0YS1zb2NrZXQtc2VydmVyIiwidGltZXN0YW1wIjoiMjAyMy0xMC0xNiAxNDo0MTowNSJ9CnJlZGlzOiBSRURJUyAtLT4gcmVkaXM6Ly8xOTIuMTY4LjUwLjE2Mzo2Mzc5IHsic2VydmljZSI6InBvcnRhLXNvY2tldC1zZXJ2ZXIiLCJ0aW1lc3RhbXAiOiIyMDIzLTEwLTE2IDE0OjQxOjA1In0KaW5mbzogU3RhcnRpbmcgbmFtZXNwYWNlOiAvdW5yZWFsIHsic2VydmljZSI6InBvcnRhLXNvY2tldC1zZXJ2ZXIiLCJ0aW1lc3RhbXAiOiIyMDIzLTEwLTE2IDE0OjQxOjA1In0KaW5mbzogU3RhcnRpbmcgbmFtZXNwYWNlOiAvZGlzZ3Vpc2UgeyJzZXJ2aWNlIjoicG9ydGEtc29ja2V0LXNlcnZlciIsInRpbWVzdGFtcCI6IjIwMjMtMTAtMTYgMTQ6NDE6MDUifQppbmZvOiBTdGFydGluZyBuYW1lc3BhY2U6IC9wbGF5b3V0X3N0YXR1cyB7InNlcnZpY2UiOiJwb3J0YS1zb2NrZXQtc2VydmVyIiwidGltZXN0YW1wIjoiMjAyMy0xMC0xNiAxNDo0MTowNSJ9CmRlYnVnOiBzZXJ2ZXIgbGlzdGVuaW5nIHsic2VydmljZSI6InBvcnRhLXNvY2tldC1zZXJ2ZXIiLCJ0aW1lc3RhbXAiOiIyMDIzLTEwLTE2IDE0OjQxOjA1In0KcmVkaXM6IC0+IFNVQlNDUklCRUQgeyJzZXJ2aWNlIjoicG9ydGEtc29ja2V0LXNlcnZlciIsInRpbWVzdGFtcCI6IjIwMjMtMTAtMTYgMTQ6NDE6MDUifQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="15692..16511"><span md-src-pos="15692..15696"></span><span md-src-pos="15696..15826">info: server starting {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="15826..15978">redis: Starting socketIO with REDIS adapter {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="15978..16134">redis: REDIS --&gt; redis://192.168.50.163:6379 {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16134..16276">info: Starting namespace: /unreal {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16276..16420">info: Starting namespace: /disguise {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16420..16570">info: Starting namespace: /playout_status {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16570..16702">debug: server listening {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16702..16834">redis: -&gt; SUBSCRIBED {"service":"porta-socket-server","timestamp":"2023-10-16 14:41:05"}
+</span><span md-src-pos="16508..16511"></span></code></pre>
+   <p md-src-pos="16513..16552"><em md-src-pos="16513..16552">Has no custom log locations to access</em></p>
+   <h2 id="commands-2" md-src-pos="16554..16565">Commands</h2>
+   <p md-src-pos="16566..16650"><span md-src-pos="16566..16572">First,</span> <span md-src-pos="16573..16649">access the docker container CLI before running any of the following commands</span>:</p>
+   <pre class="code-fence" md-src-pos="16651..16696"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLXNvY2tldCBiYXNo">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="16651..16696"><a class="run-icon code-block" href="#" role="button" data-command="Run:7e1fbdce7840f6a03e14f8b462fec9e0" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="15279..15287"></span><span md-src-pos="15287..15321">docker exec -it porta-socket bash
+</span><span md-src-pos="15321..15324"></span></code></pre>
+   <p md-src-pos="16698..16701"><span md-src-pos="16698..16701">TBD</span></p>
+   <hr>
+   <h1 id="porta-redis-container" md-src-pos="16708..16731">Porta Redis Container</h1>
+   <ul md-src-pos="16732..16763">
+    <li md-src-pos="16732..16763">Container name: <code md-src-pos="16750..16763">porta-redis</code></li>
+   </ul>
+   <h2 id="cli-access-3" md-src-pos="16765..16778">CLI Access</h2>
+   <pre class="code-fence" md-src-pos="16779..16821"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLXJlZGlzIHNo">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="16779..16821"><a class="run-icon code-block" href="#" role="button" data-command="Run:65e2edf1f82c4700bb72496746d22e8b" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="16779..16787"></span><span md-src-pos="16787..16818">docker exec -it porta-redis sh
+</span><span md-src-pos="16818..16821"></span></code></pre>
+   <h2 id="files-1" md-src-pos="16823..16831">Files</h2>
+   <p md-src-pos="16832..16863"><em md-src-pos="16832..16863">Has no custom files to access</em></p>
+   <h2 id="logs-3" md-src-pos="16865..16872">Logs</h2>
+   <p md-src-pos="16873..16932"><span md-src-pos="16873..16879">Normal</span> <code md-src-pos="16880..16886">Logs</code> <span md-src-pos="16887..16931">menu content on startup will look similar to</span>:</p>
+   <pre class="code-fence" md-src-pos="16933..17526"><div class="code-fence-highlighter-copy-button" data-fence-content="b08wT29PME9vTzBPbyBSZWRpcyBpcyBzdGFydGluZyBvTzBPb08wT29PME9vCiogUmVkaXMgdmVyc2lvbj03LjIuMSwgYml0cz02NCwgY29tbWl0PTAwMDAwMDAwLCBtb2RpZmllZD0wLCBwaWQ9MSwganVzdCBzdGFydGVkCiMgV2FybmluZzogbm8gY29uZmlnIGZpbGUgc3BlY2lmaWVkLCB1c2luZyB0aGUgZGVmYXVsdCBjb25maWcuIEluIG9yZGVyIHRvIHNwZWNpZnkgYSBjb25maWcgZmlsZSB1c2UgcmVkaXMtc2VydmVyIC9wYXRoL3RvL3JlZGlzLmNvbmYKKiBtb25vdG9uaWMgY2xvY2s6IFBPU0lYIGNsb2NrX2dldHRpbWUKKiBSdW5uaW5nIG1vZGU9c3RhbmRhbG9uZSwgcG9ydD02Mzc5LgoqIFNlcnZlciBpbml0aWFsaXplZAoqIExvYWRpbmcgUkRCIHByb2R1Y2VkIGJ5IHZlcnNpb24gNy4yLjEKKiBSREIgYWdlIDQxNDUgc2Vjb25kcwoqIFJEQiBtZW1vcnkgdXNhZ2Ugd2hlbiBjcmVhdGVkIDAuODggTWIKKiBEb25lIGxvYWRpbmcgUkRCLCBrZXlzIGxvYWRlZDogMCwga2V5cyBleHBpcmVkOiAwLgoqIERCIGxvYWRlZCBmcm9tIGRpc2s6IDAuMDAwIHNlY29uZHMKKiBSZWFkeSB0byBhY2NlcHQgY29ubmVjdGlvbnMgdGNw">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="16933..17526"><span md-src-pos="16933..16937"></span><span md-src-pos="16937..16983">oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+</span><span md-src-pos="16983..17064">* Redis version=7.2.1, bits=64, commit=00000000, modified=0, pid=1, just started
+</span><span md-src-pos="17064..17198"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+</span><span md-src-pos="17198..17237">* monotonic clock: POSIX clock_gettime
+</span><span md-src-pos="17237..17275">* Running mode=standalone, port=6379.
+</span><span md-src-pos="17275..17296">* Server initialized
+</span><span md-src-pos="17296..17336">* Loading RDB produced by version 7.2.1
+</span><span md-src-pos="17336..17359">* RDB age 4145 seconds
+</span><span md-src-pos="17359..17399">* RDB memory usage when created 0.88 Mb
+</span><span md-src-pos="17399..17452">* Done loading RDB, keys loaded: 0, keys expired: 0.
+</span><span md-src-pos="17452..17489">* DB loaded from disk: 0.000 seconds
+</span><span md-src-pos="17489..17523">* Ready to accept connections tcp
+</span><span md-src-pos="17523..17526"></span></code></pre>
+   <h2 id="commands-3" md-src-pos="17528..17539">Commands</h2>
+   <p md-src-pos="17540..17624"><span md-src-pos="17540..17546">First,</span> <span md-src-pos="17547..17623">access the docker container CLI before running any of the following commands</span>:</p>
+   <pre class="code-fence" md-src-pos="17625..17667"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIGV4ZWMgLWl0IHBvcnRhLXJlZGlzIHNo">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="17625..17667"><a class="run-icon code-block" href="#" role="button" data-command="Run:65e2edf1f82c4700bb72496746d22e8b" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="16779..16787"></span><span md-src-pos="16787..16818">docker exec -it porta-redis sh
+</span><span md-src-pos="16818..16821"></span></code></pre>
+   <p md-src-pos="17668..17732"><span md-src-pos="17668..17673">Next,</span> <span md-src-pos="17674..17731">access the Redis CLI to run any of the following commands</span>:</p>
+   <pre class="code-fence" md-src-pos="17733..17750"><div class="code-fence-highlighter-copy-button" data-fence-content="cmVkaXMtY2xp">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="17733..17750"><span md-src-pos="17733..17737"></span><span md-src-pos="17737..17747">redis-cli
+</span><span md-src-pos="17747..17750"></span></code></pre>
+   <h3 id="monitor-redis" md-src-pos="17752..17769">Monitor Redis</h3>
+   <pre class="code-fence" md-src-pos="17770..17785"><div class="code-fence-highlighter-copy-button" data-fence-content="TU9OSVRPUg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="17770..17785"><span md-src-pos="17770..17774"></span><span md-src-pos="17774..17782">MONITOR
+</span><span md-src-pos="17782..17785"></span></code></pre>
+   <h3 id="monitor-redis-messages-from-porta-api" md-src-pos="17787..17828">Monitor Redis Messages from Porta API</h3>
+   <pre class="code-fence" md-src-pos="17829..17857"><div class="code-fence-highlighter-copy-button" data-fence-content="UFNVQlNDUklCRSAqLUFQSS1tc2c=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1296028272/offline/install/docs?_ijt=20hkl4tub25cup86ecajidqi9n">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="17829..17857"><span md-src-pos="17829..17833"></span><span md-src-pos="17833..17854">PSUBSCRIBE *-API-msg
+</span><span md-src-pos="17854..17857"></span></code></pre>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,78 @@
+# Description
+name: API Dev Deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "dev" branch
+  push:
+    # should also run on a PR merge because this will always result in a push
+    # @see https://github.com/orgs/community/discussions/26724#discussioncomment-3253093
+    branches: [ "dev" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# IMPORTANT - For Deployer: prevents concurrent deploys
+concurrency: development_environment
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - name: Deploy
+        uses: deployphp/action@v1
+        with:
+          # Private key for connecting to remote hosts. To generate private key:
+          # `ssh-keygen -o -t rsa -C 'email@address'`
+          # Required
+          private-key: ${{ secrets.PRIVATE_KEY }}
+          # The deployer task to run. For example:
+          # `deploy all`
+          # Required
+          dep: deploy dev
+         # --- ------ ------------
+         # |    |         |
+         # |    |         `--- The host
+         # |    `------------- The task
+         # `------------------ The CLI
+
+          # Content of `~/.ssh/known_hosts` file. The public SSH keys for a
+          # host may be obtained using the utility `ssh-keyscan`.
+          # For example: `ssh-keyscan deployer.org`.
+          # If known-hosts omitted, `StrictHostKeyChecking no` will be added to
+          # `ssh_config`.
+          # Optional.
+          # known-hosts: |
+            # ...
+
+          # The SSH configuration. Content of `~/.ssh/config` file.
+          # Optional.
+          # ssh-config: |
+            # ...
+
+          # Deployer version to download from deployer.org.
+          # First, the action will check for Deployer binary at those paths:
+          # - `vendor/bin/deployer.phar`
+          # - `vendor/bin/dep`
+          # - `deployer.phar`
+          # If the binary not found, phar version will be downloaded from
+          # deployer.org.
+          # Optional.
+          deployer-version: "7.0.0"
+
+          # You can specify path to your local Deployer binary in the repo.
+          # Optional.
+          # deployer-binary: "bin/deployer.phar"

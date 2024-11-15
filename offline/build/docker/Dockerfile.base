@@ -1,0 +1,82 @@
+ARG PHP_FPM_VERSION=8.1
+# Use official PHP X.X FPM image
+FROM php:${PHP_FPM_VERSION}-fpm
+
+# copy official Composer image version 2's binary `/usr/bin/composer` to this image @ `/usr/bin/composer`
+# @link: https://docs.docker.com/build/building/multi-stage/#use-an-external-image-as-a-stage
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+
+# Add docker php ext repo
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+
+# Install dependencies
+RUN apt-get update --fix-missing && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libmagickwand-dev \
+    libmagickcore-dev \
+    libonig-dev \
+    libmcrypt-dev \
+    locales \
+    vim \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    unzip \
+    git \
+    curl \
+    lua-zlib-dev \
+    imagemagick \
+    ffmpeg \
+    nginx \
+    supervisor \
+    default-mysql-client \
+    iputils-ping \
+    procps \
+    logrotate
+
+# Install php extensions
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
+    install-php-extensions pdo_mysql exif pcntl bcmath gd zip gmp opcache redis
+    # mbstring xml curl
+
+RUN pecl install mcrypt && docker-php-ext-enable mcrypt
+RUN yes '' | pecl install imagick; \
+    docker-php-ext-enable imagick
+
+# Install Node.js - so we can build the front end as needed within the container
+RUN curl -fsSL https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-x64.tar.xz -o node.tar.xz && \
+    tar -xJf node.tar.xz -C /usr/local --strip-components=1 && \
+    rm node.tar.xz
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Add user for laravel application
+# RUN groupadd -g 1000 www
+# RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Copy nginx/php/supervisor configs
+COPY ./offline/build/docker/config/supervisor.conf /etc/supervisord.conf
+COPY ./offline/build/docker/config/php.ini /usr/local/etc/php/conf.d/app.ini
+COPY ./offline/build/docker/config/nginx.conf /etc/nginx/sites-enabled/default
+COPY ./offline/build/docker/config/logrotate.conf /etc/logrotate.conf
+COPY ./offline/build/docker/config/logrotate.d/php8.1-fpm /etc/logrotate.d/php8.1-fpm
+
+# PHP Error Log Files
+RUN mkdir /var/log/php
+RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
+
+# porta-worker queue logs
+RUN mkdir -p /var/www/logs
+
+RUN touch /run/nginx.pid
+RUN chown -R www-data:www-data /run/nginx.pid /var/lib/nginx /var/log/nginx && \
+    sed -i '/user nginx;/d' /etc/nginx/nginx.conf
+
+RUN chown -R www-data: /var/www
+
+USER www-data

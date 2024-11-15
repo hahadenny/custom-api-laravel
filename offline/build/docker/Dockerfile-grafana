@@ -1,0 +1,8 @@
+FROM grafana/grafana:11.1.2
+
+ENV GF_SECURITY_ADMIN_PASSWORD=admin
+ENV GF_USERS_ALLOW_SIGN_UP=false
+
+COPY config/grafana/provisioning/ /etc/grafana/provisioning/
+
+ENTRYPOINT ["/run.sh"]

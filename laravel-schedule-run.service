@@ -1,0 +1,14 @@
+[Unit]
+Description=Run Laravel scheduled tasks
+After=network.target
+# Don't rate limit the running of this service
+StartLimitIntervalSec=0
+# Try restarting every half-second
+RestartSec=500ms
+# Always try to restart (even with clean exit code)
+# @see https://www.freedesktop.org/software/systemd/man/systemd.service.html#Restart=
+Restart=always
+
+[Service]
+User=developer
+ExecStart=/usr/bin/php /var/www/html/porta-api/current/artisan schedule:run

@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Machine Setup | Porta On Prem</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>:root { --default-font-size: 13px; } body { background-color: rgba(34, 36, 54, 255.0); font-size: var(--default-font-size) !important; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(200, 211, 245, 255.0); } a { color: rgba(116, 160, 241, 255.0); } table td, table th { border: 1px solid rgba(34, 36, 54, 255.0); } hr { background-color: rgba(34, 36, 54, 255.0); } kbd, tr { border: 1px solid rgba(34, 36, 54, 255.0); } h6 { color: rgba(169, 184, 232, 255.0); } blockquote { border-left: 2px solid rgba(116, 160, 241, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(79, 214, 190, 0.752941); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(79, 214, 190, 1.000000); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { visibility: hidden; max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { visibility: visible; /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+ </head>
+ <body>
+  <div md-src-pos="0..23028">
+   <h1 id="instructions" md-src-pos="0..14">Instructions</h1>
+   <p md-src-pos="16..108"><span md-src-pos="16..52">Installation and Update instructions</span> <strong md-src-pos="53..107">must be run for each machine running Porta On-Prem</strong><span md-src-pos="107..108">.</span></p>
+   <ul md-src-pos="110..547">
+    <li md-src-pos="110..509"><a href="#setting-up-the-machine" md-src-pos="112..161">Setting up the Machine</a>
+     <ul md-src-pos="164..509">
+      <li md-src-pos="164..485"><a href="#wsl" md-src-pos="168..179">WSL</a>
+       <ul md-src-pos="186..485">
+        <li md-src-pos="186..321"><a href="#offline-installation-no-internet-access-and-no-microsoft-store" md-src-pos="190..321">Offline Installation (No Internet Access and No Microsoft Store)</a></li>
+        <li md-src-pos="328..433"><a href="#online-installation-machine-has-internet-access" md-src-pos="332..433">Online Installation (Machine has Internet Access)</a></li>
+        <li md-src-pos="440..485"><a href="#set-default-distro" md-src-pos="444..485">Set default distro</a></li>
+       </ul></li>
+      <li md-src-pos="488..509"><a href="#docker" md-src-pos="492..509">Docker</a></li>
+     </ul></li>
+    <li md-src-pos="510..547"><a href="#troubleshooting" md-src-pos="512..547">Troubleshooting</a></li>
+   </ul>
+   <h1 id="first-time-installation" md-src-pos="550..575">First Time Installation</h1>
+   <h2 id="setting-up-the-machine" md-src-pos="577..602">Setting up the Machine</h2>
+   <blockquote md-src-pos="604..714">
+    <p md-src-pos="606..714"><span md-src-pos="606..608">We</span>'<span md-src-pos="609..665">ll be using Windows Subsystem for Linux and Windows cmd,</span> <span md-src-pos="666..677">Powershell,</span> <span md-src-pos="678..714">or Terminal to interact with docker.</span></p>
+   </blockquote>
+   <h3 id="wsl" md-src-pos="716..723">WSL</h3>
+   <h4 id="offline-installation-no-internet-access-and-no-microsoft-store" md-src-pos="725..794">Offline Installation (No Internet Access and No Microsoft Store)</h4>
+   <ol md-src-pos="795..5978">
+    <li md-src-pos="795..1336">On a device that has internet access, download:
+     <ul md-src-pos="849..1336">
+      <li md-src-pos="849..1043"><a href="https://catalog.s.download.windowsupdate.com/d/msdownload/update/software/updt/2022/03/wsl_update_x64_8b248da7042adb19e7c5100712ecb5e509b3ab5f.cab" md-src-pos="852..1043">WSL Kernel Update 5.10.102.2 for x64 arch</a></li>
+      <li md-src-pos="1047..1161"><a href="https://github.com/microsoft/WSL/releases/download/2.0.14/wsl.2.0.14.0.x64.msi" md-src-pos="1050..1161">WSL 2 version 2.0.14 x64 arch</a></li>
+      <li md-src-pos="1165..1223"><a href="https://aka.ms/wslubuntu2204" md-src-pos="1168..1223">Ubuntu 22.04 WSL2 image</a></li>
+      <li md-src-pos="1227..1336"><a href="https://desktop.docker.com/win/main/amd64/139021/Docker%20Desktop%20Installer.exe" md-src-pos="1230..1336">Docker Desktop 4.28.0</a></li>
+     </ul></li>
+    <li md-src-pos="1337..1396">Copy the downloaded files to the machine being installed</li>
+    <li md-src-pos="1397..1504">Open the windows start menu, search for <code md-src-pos="1440..1458">Windows Features</code>, and select <code md-src-pos="1471..1504">Turn Windows features on or off</code></li>
+    <li md-src-pos="1505..1635">Enable the following features if they are not checked already:
+     <ul md-src-pos="1574..1635">
+      <li md-src-pos="1574..1601">Virtual Machine Platform</li>
+      <li md-src-pos="1605..1635">Windows Subsystem for Linux</li>
+     </ul></li>
+    <li md-src-pos="1636..1776">In the files you downloaded and transferred to the machine, double-click <code md-src-pos="1712..1739">wsl_update_x64_XXXXXX.cab</code> to extract the WSL2 kernel .msi file</li>
+    <li md-src-pos="1777..1838">Run <code md-src-pos="1784..1804">wsl_update_x64.msi</code> to install the WSL2 kernel update</li>
+    <li md-src-pos="1839..1874">Open powershell as administrator</li>
+    <li md-src-pos="1875..2009">In powershell, run <code md-src-pos="1897..1983">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code> to enable the new version</li>
+    <li md-src-pos="2010..2080">Double-click <code md-src-pos="2026..2048">wsl.2.0.14.0.x64.msi</code> to update WSL to version 2.0.14</li>
+    <li md-src-pos="2081..2103">Reboot the machine</li>
+    <li md-src-pos="2104..2140">Open powershell as administrator</li>
+    <li md-src-pos="2141..2178">Run <code md-src-pos="2149..2178">wsl --set-default-version 2</code></li>
+    <li md-src-pos="2179..2333">Check your WSL version with <code md-src-pos="2211..2226">wsl --version</code> (or <code md-src-pos="2231..2245">wsl --status</code>)
+     <ul md-src-pos="2251..2333">
+      <li md-src-pos="2251..2286">the WSL version should be 2.0.14</li>
+      <li md-src-pos="2291..2333">the Kernel version should be 5.10.102.2</li>
+     </ul></li>
+    <li md-src-pos="2334..2405">Rename the Ubuntu AppxBundle extension from <code md-src-pos="2382..2395">.AppxBundle</code> to <code md-src-pos="2399..2405">.zip</code></li>
+    <li md-src-pos="2406..2434">Extract this zip archive</li>
+    <li md-src-pos="2435..2571">Inside the extracted folder, use the file with the name ending in <code md-src-pos="2505..2516">_x64.appx</code> in the next step (likely <code md-src-pos="2542..2570">Ubuntu_2204.1.7.0_x64.appx</code>)</li>
+    <li md-src-pos="2572..2818">Open Powershell as administrator, navigate to the folder containing the .appx and run the following command in that directory, where <code md-src-pos="2709..2719">app-name</code> is the name of the Linux distribution <code md-src-pos="2758..2765">.appx</code> file: <code md-src-pos="2772..2818">Add-AppxPackage .\Ubuntu_2204.1.7.0_x64.appx</code></li>
+    <li md-src-pos="2819..4270">Once the Appx package has finished, you can start running the new distribution by <a href="https://learn.microsoft.com/en-us/windows/wsl/install-on-server#extract-and-install-a-linux-distribution" md-src-pos="2905..3040">running the following steps</a> (The command <code md-src-pos="3054..3062">wsl -l</code> will not show that the distribution is installed until this step is complete):
+     <ol md-src-pos="3146..3964">
+      <li md-src-pos="3146..3505">Add your Linux distribution path to the Windows environment PATH (C:\Users\Administrator\Ubuntu in this example), using PowerShell:
+       <pre class="code-fence" md-src-pos="3288..3505"><div class="code-fence-highlighter-copy-button" data-fence-content="JHVzZXJlbnYgPSBbU3lzdGVtLkVudmlyb25tZW50XTo6R2V0RW52aXJvbm1lbnRWYXJpYWJsZSgiUGF0aCIsICJVc2VyIikKW1N5c3RlbS5FbnZpcm9ubWVudF06OlNldEVudmlyb25tZW50VmFyaWFibGUoIlBBVEgiLCAkdXNlcmVudiArICI7QzpcVXNlcnNcQWRtaW5pc3RyYXRvclxVYnVudHUiLCAiVXNlciIp">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-powershell" md-src-pos="3288..3505"><span md-src-pos="3288..3303"></span><span md-src-pos="3303..3359">$userenv = [System.Environment]::GetEnvironmentVariable(</span><span md-src-pos="3359..3360" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3360..3364" style="color: rgb(122, 248, 202);">Path</span><span md-src-pos="3364..3365" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3365..3367">, </span><span md-src-pos="3367..3368" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3368..3372" style="color: rgb(122, 248, 202);">User</span><span md-src-pos="3372..3373" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3373..3375">)
+</span><span md-src-pos="3375..3420">[System.Environment]::SetEnvironmentVariable(</span><span md-src-pos="3420..3421" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3421..3425" style="color: rgb(122, 248, 202);">PATH</span><span md-src-pos="3425..3426" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3426..3439">, $userenv + </span><span md-src-pos="3439..3440" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3440..3470" style="color: rgb(122, 248, 202);">;C:\Users\Administrator\Ubuntu</span><span md-src-pos="3470..3471" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3471..3473">, </span><span md-src-pos="3473..3474" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3474..3478" style="color: rgb(122, 248, 202);">User</span><span md-src-pos="3478..3479" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="3479..3481">)
+</span><span md-src-pos="3495..3505"></span></code></pre></li>
+      <li md-src-pos="3510..3627">In powershell, run <code md-src-pos="3532..3548">ubuntu2204.exe</code>. This will begin installing the Ubuntu 22.04 distro and prompt for user setup.</li>
+      <li md-src-pos="3632..3964">When prompted for a username and password, enter a new username and password (this user will have <code md-src-pos="3733..3739">sudo</code> aka admin permissions)
+       <ul md-src-pos="3770..3964">
+        <li md-src-pos="3770..3845">The username must contain only lowercase letters, underscores, and dashes</li>
+        <li md-src-pos="3853..3964"><strong md-src-pos="3855..3894">Do not proceed with the <code md-src-pos="3881..3887">root</code> user</strong>, this is a security risk and will cause issues with the installation</li>
+       </ul></li>
+     </ol>
+     <blockquote md-src-pos="3969..4270">
+      <p md-src-pos="3971..4270"><span md-src-pos="3971..4003">You may not need to add to PATH,</span> <span md-src-pos="4004..4032">the exe should be located at</span> <code md-src-pos="4033..4071">%LOCALAPPDATA%\Microsoft\WindowsApps</code> <span md-src-pos="4072..4101">in the folder that looks like</span> <code md-src-pos="4102..4143">CanonicalGroupLimited.Ubuntu22.04LTS...</code> <span md-src-pos="4144..4175">and you could try just clicking</span> <code md-src-pos="4176..4192">ubuntu2204.exe</code> <span md-src-pos="4193..4270">or calling the full path from powershell in order to start the Ubuntu install</span></p>
+     </blockquote></li>
+    <li md-src-pos="4271..5101">After distro install completes, back in powershell, you should see <code md-src-pos="4342..4356">Ubuntu-22.04</code> listed if you run <code md-src-pos="4375..4386">wsl -l -v</code>
+     <ul md-src-pos="4391..5101">
+      <li md-src-pos="4391..5101">If you aren't seeing <code md-src-pos="4414..4428">Ubuntu-22.04</code> listed, try checking the distro in use by starting WSL and checking the OS version by running <code md-src-pos="4523..4528">wsl</code> in Powershell, and then running <code md-src-pos="4561..4582">cat /etc/os-release</code>. The output should look something like:
+       <pre class="code-fence" md-src-pos="4629..5101"><div class="code-fence-highlighter-copy-button" data-fence-content="UFJFVFRZX05BTUU9IlVidW50dSAyMi4wNC40IExUUyIKTkFNRT0iVWJ1bnR1IgpWRVJTSU9OX0lEPSIyMi4wNCIKVkVSU0lPTj0iMjIuMDQuNCBMVFMgKEphbW15IEplbGx5ZmlzaCkiClZFUlNJT05fQ09ERU5BTUU9amFtbXkKSUQ9dWJ1bnR1CklEX0xJS0U9ZGViaWFuCkhPTUVfVVJMPSJodHRwczovL3d3dy51YnVudHUuY29tLyIKU1VQUE9SVF9VUkw9Imh0dHBzOi8vaGVscC51YnVudHUuY29tLyIKQlVHX1JFUE9SVF9VUkw9Imh0dHBzOi8vYnVncy5sYXVuY2hwYWQubmV0L3VidW50dS8iClBSSVZBQ1lfUE9MSUNZX1VSTD0iaHR0cHM6Ly93d3cudWJ1bnR1LmNvbS9sZWdhbC90ZXJtcy1hbmQtcG9saWNpZXMvcHJpdmFjeS1wb2xpY3kiClVCVU5UVV9DT0RFTkFNRT1qYW1teQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-" md-src-pos="4629..5101"><span md-src-pos="4629..4634"></span><span md-src-pos="4634..4677">PRETTY_NAME="Ubuntu 22.04.4 LTS"
+</span><span md-src-pos="4677..4701">NAME="Ubuntu"
+</span><span md-src-pos="4701..4730">VERSION_ID="22.04"
+</span><span md-src-pos="4730..4780">VERSION="22.04.4 LTS (Jammy Jellyfish)"
+</span><span md-src-pos="4780..4803">VERSION_CODENAME=jammy
+</span><span md-src-pos="4803..4813">ID=ubuntu
+</span><span md-src-pos="4813..4828">ID_LIKE=debian
+</span><span md-src-pos="4828..4873">HOME_URL="https://www.ubuntu.com/"
+</span><span md-src-pos="4873..4922">SUPPORT_URL="https://help.ubuntu.com/"
+</span><span md-src-pos="4922..4984">BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+</span><span md-src-pos="4984..5078">PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+</span><span md-src-pos="5078..5100">UBUNTU_CODENAME=jammy
+</span><span md-src-pos="5092..5101"></span></code></pre></li>
+     </ul></li>
+    <li md-src-pos="5102..5124">Reboot the machine</li>
+    <li md-src-pos="5125..5163">Reopen powershell as administrator</li>
+    <li md-src-pos="5164..5489">Double-check your install: <code md-src-pos="5195..5209">wsl --status</code>, you should see:
+     <ul md-src-pos="5231..5489">
+      <li md-src-pos="5231..5269"><code md-src-pos="5233..5269">Default Distribution: Ubuntu-22.04</code></li>
+      <li md-src-pos="5274..5296"><code md-src-pos="5276..5296">Default Version: 2</code></li>
+      <li md-src-pos="5301..5489"><strong md-src-pos="5303..5438"><em md-src-pos="5305..5436">If you receive "WSL2 is not supported with your current machine configuration" then you need to enable virtualization in the BIOS</em></strong>. This process will vary depending on your machine.</li>
+     </ul></li>
+    <li md-src-pos="5490..5700">Make sure Ubuntu is using WSL2 by running <code md-src-pos="5536..5553">wsl -l -v --all</code> this should look something like:
+     <pre class="code-fence" md-src-pos="5591..5700"><div class="code-fence-highlighter-copy-button" data-fence-content="TkFNRSAgICAgICAgICAgICAgICAgICBTVEFURSAgICAgICAgICAgVkVSU0lPTgoqIFVidW50dS0yMi4wNCAgICAgICAgICAgUnVubmluZyAgICAgICAgIDI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="5591..5700"><span md-src-pos="5591..5595"></span><span md-src-pos="5595..5642">NAME                   STATE           VERSION
+</span><span md-src-pos="5642..5685">* Ubuntu-22.04           Running         2
+</span><span md-src-pos="5693..5700"></span></code></pre></li>
+    <li md-src-pos="5701..5821">Ensure Ubuntu is used as the default distro by running this command in Powershell:
+     <ul md-src-pos="5792..5821">
+      <li md-src-pos="5792..5821"><code md-src-pos="5794..5821">wslconfig /s Ubuntu-22.04</code></li>
+     </ul></li>
+    <li md-src-pos="5822..5892">You can confirm by running <code md-src-pos="5853..5867">wsl --status</code> again, or <code md-src-pos="5878..5892">wslconfig /l</code></li>
+    <li md-src-pos="5893..5978">Now you can move on to the <a href="#docker" md-src-pos="5924..5954">Docker installation</a> and Porta On Prem steps</li>
+   </ol>
+   <p md-src-pos="5980..6121"><span md-src-pos="5980..5997">For more details,</span> <span md-src-pos="5998..6005">see the</span> <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" md-src-pos="6006..6120">Official Microsoft WSL manual install instructions</a><span md-src-pos="6120..6121">.</span></p>
+   <p md-src-pos="6123..6143"><span md-src-pos="6123..6142">Other related links</span>:</p>
+   <ul md-src-pos="6144..6910">
+    <li md-src-pos="6144..6222">WSL Kernel releases: <a href="https://github.com/microsoft/WSL2-Linux-Kernel/releases" md-src-pos="6167..6222">https://github.com/microsoft/WSL2-Linux-Kernel/releases</a></li>
+    <li md-src-pos="6223..6408">KBXXXX Win10 update packages: <a href="https://support.microsoft.com/en-us/topic/kb5003791-update-to-windows-10-version-21h2-by-using-an-enablement-package-8bc077be-18d7-4aac-81ce-6f6dad2cd384" md-src-pos="6255..6408">https://support.microsoft.com/en-us/topic/kb5003791-update-to-windows-10-version-21h2-by-using-an-enablement-package-8bc077be-18d7-4aac-81ce-6f6dad2cd384</a></li>
+    <li md-src-pos="6409..6536">Running <code md-src-pos="6419..6433">wsl --update</code> manually (update WSL kernel): <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" md-src-pos="6464..6536">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</a></li>
+    <li md-src-pos="6537..6690">Installing from .appx without microsoft store: <a href="https://learn.microsoft.com/en-us/windows/wsl/install-on-server#extract-and-install-a-linux-distribution" md-src-pos="6586..6690">https://learn.microsoft.com/en-us/windows/wsl/install-on-server#extract-and-install-a-linux-distribution</a></li>
+    <li md-src-pos="6691..6809">(?) Creating custom WSL images: <a href="https://learn.microsoft.com/en-us/windows/wsl/enterprise#creating-a-custom-wsl-image" md-src-pos="6725..6809">https://learn.microsoft.com/en-us/windows/wsl/enterprise#creating-a-custom-wsl-image</a></li>
+    <li md-src-pos="6810..6910">(?) Importing linux distro to WSL: <a href="https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro" md-src-pos="6847..6910">https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro</a></li>
+   </ul>
+   <h4 id="online-installation-machine-has-internet-access" md-src-pos="6914..6968">Online Installation (Machine has Internet Access)</h4>
+   <ol md-src-pos="6969..10880">
+    <li md-src-pos="6969..7405">Download the following files to the machine being installed:
+     <ul md-src-pos="7036..7405">
+      <li md-src-pos="7036..7230"><a href="https://catalog.s.download.windowsupdate.com/d/msdownload/update/software/updt/2022/03/wsl_update_x64_8b248da7042adb19e7c5100712ecb5e509b3ab5f.cab" md-src-pos="7039..7230">WSL Kernel Update 5.10.102.2 for x64 arch</a></li>
+      <li md-src-pos="7234..7292"><a href="https://aka.ms/wslubuntu2204" md-src-pos="7237..7292">Ubuntu 22.04 WSL2 image</a></li>
+      <li md-src-pos="7296..7405"><a href="https://desktop.docker.com/win/main/amd64/139021/Docker%20Desktop%20Installer.exe" md-src-pos="7299..7405">Docker Desktop 4.28.0</a></li>
+     </ul></li>
+    <li md-src-pos="7406..7513">Open the windows start menu, search for <code md-src-pos="7449..7467">Windows Features</code>, and select <code md-src-pos="7480..7513">Turn Windows features on or off</code></li>
+    <li md-src-pos="7514..7644">Enable the following features if they are not checked already:
+     <ul md-src-pos="7583..7644">
+      <li md-src-pos="7583..7610">Virtual Machine Platform</li>
+      <li md-src-pos="7614..7644">Windows Subsystem for Linux</li>
+     </ul></li>
+    <li md-src-pos="7645..7785">In the files you downloaded and transferred to the machine, double-click <code md-src-pos="7721..7748">wsl_update_x64_XXXXXX.cab</code> to extract the WSL2 kernel .msi file</li>
+    <li md-src-pos="7786..7847">Run <code md-src-pos="7793..7813">wsl_update_x64.msi</code> to install the WSL2 kernel update</li>
+    <li md-src-pos="7848..7883">Open powershell as administrator</li>
+    <li md-src-pos="7884..8018">In powershell, run <code md-src-pos="7906..7992">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code> to enable the new version</li>
+    <li md-src-pos="8019..8089">Double-click <code md-src-pos="8035..8057">wsl.2.0.14.0.x64.msi</code> to update WSL to version 2.0.14</li>
+    <li md-src-pos="8090..8111">Reboot the machine</li>
+    <li md-src-pos="8112..8148">Open powershell as administrator</li>
+    <li md-src-pos="8149..8186">Run <code md-src-pos="8157..8186">wsl --set-default-version 2</code></li>
+    <li md-src-pos="8187..8339">Check your WSL version with <code md-src-pos="8219..8234">wsl --version</code> (or <code md-src-pos="8239..8253">wsl --status</code>)
+     <ul md-src-pos="8259..8339">
+      <li md-src-pos="8259..8293">the WSL version should be 2.0.14</li>
+      <li md-src-pos="8298..8339">the Kernel version should be 5.10.102.2</li>
+     </ul></li>
+    <li md-src-pos="8340..8885">Run <code md-src-pos="8348..8379">wsl --install -d Ubuntu-22.04</code>
+     <ul md-src-pos="8384..8885">
+      <li md-src-pos="8384..8417">confirm any permission prompts</li>
+      <li md-src-pos="8422..8504">An alternate command may be needed: <code md-src-pos="8461..8504">wsl --install Ubuntu-22.04 --web-download</code></li>
+      <li md-src-pos="8509..8715">If Ubuntu 22.04 is not available (run <code md-src-pos="8550..8571">wsl --list --online</code> to see available linux distros), and your machine has internet access, use <code md-src-pos="8647..8655">Ubuntu</code> or <code md-src-pos="8659..8673">Ubuntu-20.04</code> as the distro and proceed with the steps.</li>
+      <li md-src-pos="8720..8885"><strong md-src-pos="8723..8885"><em md-src-pos="8725..8883">IMPORTANT: If the necessary Ubuntu version is not available, the PX Machine Image should be updated to correctly support the software it is intended to run.</em></strong></li>
+     </ul></li>
+    <li md-src-pos="8886..8925">Wait for the installation to finish</li>
+    <li md-src-pos="8926..8977">Reboot your PC (if it wasn't already installed)</li>
+    <li md-src-pos="8978..9362">After startup, the Ubuntu CLI should open automatically and prompt you for a username and password
+     <ul md-src-pos="9085..9362">
+      <li md-src-pos="9085..9156">Enter a username and password (this user will have sudo permissions)</li>
+      <li md-src-pos="9161..9271">After the "Installation successful!" message, in the terminal that opens, run:
+       <ul md-src-pos="9250..9271">
+        <li md-src-pos="9250..9271"><code md-src-pos="9254..9271">sudo apt update</code></li>
+       </ul></li>
+      <li md-src-pos="9276..9362">Then run the following and approve any confirmations:
+       <ul md-src-pos="9340..9362">
+        <li md-src-pos="9340..9362"><code md-src-pos="9344..9362">sudo apt upgrade</code></li>
+       </ul></li>
+     </ul></li>
+    <li md-src-pos="9363..10092">If you had to install with <code md-src-pos="9394..9402">Ubuntu</code> or <code md-src-pos="9406..9420">Ubuntu-20.04</code> instead of <code md-src-pos="9432..9446">Ubuntu-22.04</code>, you will need to upgrade to Ubuntu 22.04:
+     <ul md-src-pos="9494..10092">
+      <li md-src-pos="9494..9520"><code md-src-pos="9497..9520">sudo apt full-upgrade</code></li>
+      <li md-src-pos="9525..9581">Close the terminal window and open a new WSL terminal</li>
+      <li md-src-pos="9586..9854">Run the following command to upgrade to Ubuntu 22.04:
+       <ul md-src-pos="9650..9854">
+        <li md-src-pos="9650..9854"><code md-src-pos="9654..9683">y | sudo do-release-upgrade</code>
+         <ul md-src-pos="9695..9854">
+          <li md-src-pos="9695..9797">The command will take a few minutes to run and you will need to confirm the upgrade when prompted.</li>
+          <li md-src-pos="9809..9854">This prompt will happen one or two times.</li>
+         </ul></li>
+       </ul></li>
+      <li md-src-pos="9859..9911">After the upgrade is complete, close the terminal</li>
+      <li md-src-pos="9916..10092">Open a new WSL terminal and check its release information to ensure Ubuntu 22.XX is installed:
+       <ul md-src-pos="10021..10092">
+        <li md-src-pos="10021..10046"><code md-src-pos="10025..10046">cat /etc/os-release</code></li>
+        <li md-src-pos="10054..10092">The <code md-src-pos="10062..10074">VERSION_ID</code> should be <code md-src-pos="10085..10092">22.04</code></li>
+       </ul></li>
+     </ul></li>
+    <li md-src-pos="10093..10152">If you rebooted, reopen Powershell <strong md-src-pos="10132..10152">as administrator</strong></li>
+    <li md-src-pos="10153..10295">Run <code md-src-pos="10161..10175">wsl --update</code>
+     <ul md-src-pos="10180..10295">
+      <li md-src-pos="10180..10295">See the troubleshooting section "Error: 0x8024500c after wsl --update" below if you have issues with this command</li>
+     </ul></li>
+    <li md-src-pos="10296..10349">Restart WSL (if it was updated): <code md-src-pos="10333..10349">wsl --shutdown</code></li>
+    <li md-src-pos="10350..10669">Double-check your install: <code md-src-pos="10381..10395">wsl --status</code>, you should see:
+     <ul md-src-pos="10417..10669">
+      <li md-src-pos="10417..10455"><code md-src-pos="10419..10455">Default Distribution: Ubuntu-22.04</code></li>
+      <li md-src-pos="10460..10482"><code md-src-pos="10462..10482">Default Version: 2</code></li>
+      <li md-src-pos="10487..10669">If you receive "WSL2 is not supported with your current machine configuration" then you need to enable virtualization in the BIOS. This process will vary depending on your machine.</li>
+     </ul></li>
+    <li md-src-pos="10670..10880">Make sure Ubuntu is using WSL2 by running <code md-src-pos="10716..10733">wsl -l -v --all</code> this should look something like:
+     <pre class="code-fence" md-src-pos="10771..10880"><div class="code-fence-highlighter-copy-button" data-fence-content="TkFNRSAgICAgICAgICAgICAgICAgICBTVEFURSAgICAgICAgICAgVkVSU0lPTgoqIFVidW50dS0yMi4wNCAgICAgICAgICAgUnVubmluZyAgICAgICAgIDI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="10771..10880"><span md-src-pos="10771..10775"></span><span md-src-pos="10775..10822">NAME                   STATE           VERSION
+</span><span md-src-pos="10822..10865">* Ubuntu-22.04           Running         2
+</span><span md-src-pos="10873..10880"></span></code></pre></li>
+   </ol>
+   <p md-src-pos="10882..11008"><span md-src-pos="10882..10899">For more details,</span> <span md-src-pos="10900..10907">see the</span> <a href="https://learn.microsoft.com/en-us/windows/wsl/install" md-src-pos="10908..11008">Official Microsoft WSL install instructions</a></p>
+   <h4 id="set-default-distro" md-src-pos="11010..11033">Set default distro</h4>
+   <p md-src-pos="11034..11147"><span md-src-pos="11034..11065">Once Ubuntu 22.04 is installed,</span> <span md-src-pos="11066..11078">make sure it</span>'<span md-src-pos="11079..11146">s your default distro by running this command in Windows Powershell</span>:</p>
+   <pre class="code-fence" md-src-pos="11148..11181"><div class="code-fence-highlighter-copy-button" data-fence-content="d3NsY29uZmlnIC9zIFVidW50dS0yMi4wNA==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="11148..11181"><span md-src-pos="11148..11152"></span><span md-src-pos="11152..11178">wslconfig /s Ubuntu-22.04
+</span><span md-src-pos="11178..11181"></span></code></pre>
+   <p md-src-pos="11183..11209"><span md-src-pos="11183..11209">You can confirm by running</span></p>
+   <pre class="code-fence" md-src-pos="11210..11230"><div class="code-fence-highlighter-copy-button" data-fence-content="d3NsY29uZmlnIC9s">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="11210..11230"><span md-src-pos="11210..11214"></span><span md-src-pos="11214..11227">wslconfig /l
+</span><span md-src-pos="11227..11230"></span></code></pre>
+   <h3 id="docker" md-src-pos="11232..11242">Docker</h3>
+   <p md-src-pos="11244..11396"><span md-src-pos="11244..11292">Download and install Docker Desktop for Windows,</span> <span md-src-pos="11293..11307">version 4.28.0</span>: <span md-src-pos="11313..11314">-</span> <a href="https://desktop.docker.com/win/main/amd64/139021/Docker%20Desktop%20Installer.exe" md-src-pos="11315..11396">https://desktop.docker.com/win/main/amd64/139021/Docker%20Desktop%20Installer.exe</a></p>
+   <p md-src-pos="11398..11568"><span md-src-pos="11398..11453">Follow the installer instructions for WSL2 backend and,</span> <span md-src-pos="11454..11478">when prompted in docker,</span> <span md-src-pos="11479..11489">ensure the</span> <strong md-src-pos="11490..11522">Use WSL 2 instead of Hyper-V</strong> <span md-src-pos="11523..11568">option on the Configuration page is selected.</span></p>
+   <ol md-src-pos="11570..13856">
+    <li md-src-pos="11570..11600">
+     <p md-src-pos="11573..11600">Make sure Docker is running</p></li>
+    <li md-src-pos="11602..11970">
+     <p md-src-pos="11605..11641">Set Docker Desktop to start on login</p>
+     <ul md-src-pos="11645..11970">
+      <li md-src-pos="11645..11711">In the top right menu bar, click the gear icon to open settings</li>
+      <li md-src-pos="11715..11787">Select the left sidebar's General tab to pull up the General settings</li>
+      <li md-src-pos="11791..11846">Check the box "Start Docker Desktop when you log in"</li>
+      <li md-src-pos="11850..11897">In the bottom right, click "Apply &amp; Restart"</li>
+      <li md-src-pos="11901..11970">Using the inner "X" icon in the top right, close the Settings menu</li>
+     </ul></li>
+    <li md-src-pos="11972..12419">
+     <p md-src-pos="11975..12021"><strong md-src-pos="11975..11994">Disable Updates</strong> in Docker Desktop Settings</p>
+     <ul md-src-pos="12025..12419">
+      <li md-src-pos="12025..12091">In the top right menu bar, click the gear icon to open settings</li>
+      <li md-src-pos="12095..12176">Select the left sidebar's Software updates tab to pull up the updates settings</li>
+      <li md-src-pos="12180..12236"><strong md-src-pos="12183..12194">Uncheck</strong> the box "Automatically check for updates"</li>
+      <li md-src-pos="12240..12295"><strong md-src-pos="12243..12254">Uncheck</strong> the box "Automatically download updates"</li>
+      <li md-src-pos="12299..12346">In the bottom right, click "Apply &amp; Restart"</li>
+      <li md-src-pos="12350..12419">Using the inner "X" icon in the top right, close the Settings menu</li>
+     </ul></li>
+    <li md-src-pos="12421..12551">
+     <p md-src-pos="12424..12461">Set up the Windows user to auto-login</p>
+     <ul md-src-pos="12465..12551">
+      <li md-src-pos="12465..12551">A sales engineer, support engineer or IT specialist may need to help with this step</li>
+     </ul></li>
+    <li md-src-pos="12553..12854">
+     <p md-src-pos="12556..12656">Open the <code md-src-pos="12565..12572">hosts</code> file <strong md-src-pos="12578..12598">as administrator</strong> in Windows (Located in <code md-src-pos="12622..12655">C:\Windows\System32\drivers\etc</code>)</p>
+     <ul md-src-pos="12660..12854">
+      <li md-src-pos="12660..12778">This is often most easily done by opening the start menu and typing <code md-src-pos="12731..12740">notepad</code> to search for the Notepad application</li>
+      <li md-src-pos="12782..12854">Right-click the Notepad application and select "Run as administrator"</li>
+     </ul></li>
+    <li md-src-pos="12856..13552">
+     <p md-src-pos="12859..13085">Copy &amp; paste the following entries at the bottom of the <code md-src-pos="12915..12922">hosts</code> file and replace each <code md-src-pos="12945..12967">&lt;XXXXXXX MACHINE IP&gt;</code> with the appropriate machine IPs. Save the <code md-src-pos="13011..13018">hosts</code> file as type <code md-src-pos="13032..13049">All files (*.*)</code> (it should have NO file extension).</p>
+     <pre class="code-fence" md-src-pos="13089..13253"><div class="code-fence-highlighter-copy-button" data-fence-content="PENVUlJFTlQgTUFDSElORSBJUD4gcG9ydGEtc29ja2V0LnNlcnZlcgogPE1BSU4gTUFDSElORSBJUD4gcG9ydGEtZGIKIDxCQUNLVVAgTUFDSElORSBJUD4gcG9ydGEtZGItMgogPEFSQklURVIgTUFDSElORSBJUD4gcG9ydGEtZGItMw==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-plain" md-src-pos="13089..13253"><span md-src-pos="13089..13099"></span><span md-src-pos="13099..13146">&lt;CURRENT MACHINE IP&gt; porta-socket.server
+</span><span md-src-pos="13146..13179">&lt;MAIN MACHINE IP&gt; porta-db
+</span><span md-src-pos="13179..13216">&lt;BACKUP MACHINE IP&gt; porta-db-2
+</span><span md-src-pos="13216..13254">&lt;ARBITER MACHINE IP&gt; porta-db-3
+</span><span md-src-pos="13246..13253"></span></code></pre>
+     <ul md-src-pos="13257..13552">
+      <li md-src-pos="13257..13552"><em md-src-pos="13260..13552"><strong md-src-pos="13261..13269">NOTE</strong>: The IP address required here <strong md-src-pos="13300..13313">cannot be</strong> 127.0.0.1. It is the IPv4 address for the machine's current network connection. The IPv4 address can be observed by running <code md-src-pos="13438..13448">ipconfig</code> in Powershell or cmd.exe and looking under the correct network adapter's (often d3net) value for IPv4.</em></li>
+     </ul></li>
+    <li md-src-pos="13554..13856">
+     <p md-src-pos="13557..13615">Add inbound rules to open mysql ports <strong md-src-pos="13595..13614">on EACH machine</strong>:</p>
+     <ol md-src-pos="13619..13856">
+      <li md-src-pos="13619..13729">In Windows Security --&gt; Firewall &amp; network protection --&gt; Advanced Settings --&gt; Inbound Rules --&gt; Add Rule</li>
+      <li md-src-pos="13733..13822">Choose "Ports" and add paste these as local ports: <code md-src-pos="13788..13822">3306,3307,3308,33061,33062,33063</code></li>
+      <li md-src-pos="13826..13856">Finish up the wizard steps</li>
+     </ol></li>
+   </ol>
+   <hr>
+   <h1 id="troubleshooting" md-src-pos="13864..13881">Troubleshooting</h1>
+   <h2 id="database-replication" md-src-pos="13883..13906">Database Replication</h2>
+   <p md-src-pos="13907..14021"><span md-src-pos="13907..13936">For database troubleshooting,</span> <span md-src-pos="13937..13940">see</span> <a href="group-replication-troubleshooting.html" md-src-pos="13941..14021">group-replication-troubleshooting.html</a></p>
+   <h2 id="wsl---install--d-ubuntu-2204-gives-error-code-0x80072ee7" md-src-pos="14023..14087"><code md-src-pos="14026..14057">wsl --install -d Ubuntu-22.04</code> gives <code md-src-pos="14064..14087">Error Code 0x80072ee7</code></h2>
+   <p md-src-pos="14088..14306"><span md-src-pos="14088..14157">WSL/Ubuntu set up will need to be done using the offline steps in the</span> <a href="#offline-installation-no-internet-access-and-no-microsoft-store" md-src-pos="14158..14305">"Offline Installation (No Internet Access and No Microsoft Store)" section above</a><span md-src-pos="14305..14306">.</span></p>
+   <h2 id="wslregisterdistribution-failed-with-error-0x80370102" md-src-pos="14309..14365">WslRegisterDistribution failed with error: 0x80370102</h2>
+   <p md-src-pos="14366..14543"><span md-src-pos="14366..14407">This error may occur when rebooting after</span> <code md-src-pos="14408..14423">wsl --install</code><span md-src-pos="14423..14424">.</span><br><span md-src-pos="14427..14492">Follow the WSL instructions to enable virtualization in the BIOS,</span> <span md-src-pos="14493..14543">then continue with the install steps from earlier.</span></p>
+   <h2 id="error-createprocessparsecommon711-failed-to-translate-when-running-wsl-commands" md-src-pos="14546..14635"><code md-src-pos="14549..14607">ERROR: CreateProcessParseCommon:711: Failed to translate</code> when running <code md-src-pos="14621..14626">wsl</code> commands</h2>
+   <p md-src-pos="14636..14850"><span md-src-pos="14636..14686">Make sure that Ubuntu was set as a default distro,</span> <span md-src-pos="14687..14725">this error often indicates that Docker</span>'<span md-src-pos="14726..14767">s distro is being used instead of Ubuntu.</span> <span md-src-pos="14768..14793">Though soem commands like</span> <code md-src-pos="14794..14811">wsl -l -v --all</code> <span md-src-pos="14812..14825">still worked.</span> <span md-src-pos="14826..14849">This error displayed as</span>:</p>
+   <pre class="code-fence" md-src-pos="14851..16502"><div class="code-fence-highlighter-copy-button" data-fence-content="UFMgQzpcVXNlcnNcYWRtaW5pc3RyYXRldXI+IHdzbAo8Mz5XU0wgKDI3KSBFUlJPUjogQ3JlYXRlUHJvY2Vzc1BhcnNlQ29tbW9uOjcxMTogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxVc2Vyc1xhZG1pbmlzdHJhdGV1cgo8Mz5XU0wgKDI3KSBFUlJPUjogQ3JlYXRlUHJvY2Vzc1BhcnNlQ29tbW9uOjc1NyA6IGdldHB3dWlkKDApIGZhaWxlZCAyCjwzPldTTCAoMjcpIEVSUk9SOiBVdGlsVHJhbnNsYXRlUGF0aExpc3Q6Mjg2NjogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxQcm9ncmFtIEZpbGVzXFdTTAo8Mz5XU0wgKDI3KSBFUlJPUjogVXRpbFRyYW5zbGF0ZVBhdGhMaXN0OjI4NjY6IEZhaWxlZCB0byB0cmFuc2xhdGUgQzpcV0lORE9XU1xzeXN0ZW0zMgo8Mz5XU0wgKDI3KSBFUlJPUjogVXRpbFRyYW5zbGF0ZVBhdGhMaXN0OjI4NjY6IEZhaWxlZCB0byB0cmFuc2xhdGUgQzpcV0lORE9XUwo8Mz5XU0wgKDI3KSBFUlJPUjogVXRpbFRyYW5zbGF0ZVBhdGhMaXN0OjI4NjY6IEZhaWxlZCB0byB0cmFuc2xhdGUgQzpcV0lORE9XU1xTeXN0ZW0zMlxXYmVtCjwzPldTTCAoMjcpIEVSUk9SOiBVdGlsVHJhbnNsYXRlUGF0aExpc3Q6Mjg2NjogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxXSU5ET1dTXFN5c3RlbTMyXFdpbmRvd3NQb3dlclNoZWxsXHYxLjBcCjwzPldTTCAoMjcpIEVSUk9SOiBVdGlsVHJhbnNsYXRlUGF0aExpc3Q6Mjg2NjogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxXSU5ET1dTXFN5c3RlbTMyXE9wZW5TU0hcCjwzPldTTCAoMjcpIEVSUk9SOiBVdGlsVHJhbnNsYXRlUGF0aExpc3Q6Mjg2NjogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxQcm9ncmFtIEZpbGVzXGRvdG5ldFwKPDM+V1NMICgyNykgRVJST1I6IFV0aWxUcmFuc2xhdGVQYXRoTGlzdDoyODY2OiBGYWlsZWQgdG8gdHJhbnNsYXRlIEM6XFByb2dyYW0gRmlsZXNcRG9ja2VyXERvY2tlclxyZXNvdXJjZXNcYmluCjwzPldTTCAoMjcpIEVSUk9SOiBVdGlsVHJhbnNsYXRlUGF0aExpc3Q6Mjg2NjogRmFpbGVkIHRvIHRyYW5zbGF0ZSBDOlxVc2Vyc1xhZG1pbmlzdHJhdGV1clxBcHBEYXRhXExvY2FsXE1pY3Jvc29mdFxXaW5kb3dzQXBwcwo8Mz5XU0wgKDI3KSBFUlJPUjogVXRpbFRyYW5zbGF0ZVBhdGhMaXN0OjI4NjY6IEZhaWxlZCB0byB0cmFuc2xhdGUgQzpcVXNlcnNcYWRtaW5pc3RyYXRldXJcVWJ1bnR1ClByb2Nlc3NpbmcgZnN0YWIgd2l0aCBtb3VudCAtYSBmYWlsZWQuCkZhaWxlZCB0byBtb3VudCBDOlwsIHNlZSBkbWVzZyBmb3IgbW9yZSBkZXRhaWxzLgpGYWlsZWQgdG8gbW91bnQgRDpcLCBzZWUgZG1lc2cgZm9yIG1vcmUgZGV0YWlscy4KRmFpbGVkIHRvIG1vdW50IEM6XCwgc2VlIGRtZXNnIGZvciBtb3JlIGRldGFpbHMuCkZhaWxlZCB0byBtb3VudCBEOlwsIHNlZSBkbWVzZyBmb3IgbW9yZSBkZXRhaWxzLgoKPDM+V1NMICgyNykgRVJST1I6IENyZWF0ZVByb2Nlc3NFbnRyeUNvbW1vbjozMzQ6IGdldHB3dWlkKDApIGZhaWxlZCAyCjwzPldTTCAoMjcpIEVSUk9SOiBDcmVhdGVQcm9jZXNzRW50cnlDb21tb246NTA1OiBleGVjdnBlIC9iaW4vc2ggZmFpbGVkIDIKPDM+V1NMICgyNykgRVJST1I6IENyZWF0ZVByb2Nlc3NFbnRyeUNvbW1vbjo1MDg6IENyZWF0ZSBwcm9jZXNzIG5vdCBleHBlY3RlZCB0byByZXR1cm4=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="14851..16502"><span md-src-pos="14851..14855"></span><span md-src-pos="14855..14890">PS C:\Users\administrateur&gt; wsl
+</span><span md-src-pos="14890..14989">&lt;3&gt;WSL (27) ERROR: CreateProcessParseCommon:711: Failed to translate C:\Users\administrateur
+</span><span md-src-pos="14989..15066">&lt;3&gt;WSL (27) ERROR: CreateProcessParseCommon:757 : getpwuid(0) failed 2
+</span><span md-src-pos="15066..15160">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\WSL
+</span><span md-src-pos="15160..15253">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\WINDOWS\system32
+</span><span md-src-pos="15253..15337">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\WINDOWS
+</span><span md-src-pos="15337..15435">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\WINDOWS\System32\Wbem
+</span><span md-src-pos="15435..15552">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\WINDOWS\System32\WindowsPowerShell\v1.0\
+</span><span md-src-pos="15552..15654">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\WINDOWS\System32\OpenSSH\
+</span><span md-src-pos="15654..15752">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\dotnet\
+</span><span md-src-pos="15752..15870">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Docker\Docker\resources\bin
+</span><span md-src-pos="15870..16003">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\administrateur\AppData\Local\Microsoft\WindowsApps
+</span><span md-src-pos="16003..16107">&lt;3&gt;WSL (27) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\administrateur\Ubuntu
+</span><span md-src-pos="16107..16146">Processing fstab with mount -a failed.
+</span><span md-src-pos="16146..16195">Failed to mount C:\, see dmesg for more details.
+</span><span md-src-pos="16195..16244">Failed to mount D:\, see dmesg for more details.
+</span><span md-src-pos="16244..16293">Failed to mount C:\, see dmesg for more details.
+</span><span md-src-pos="16293..16342">Failed to mount D:\, see dmesg for more details.
+</span><span md-src-pos="16342..16343">
+</span><span md-src-pos="16343..16419">&lt;3&gt;WSL (27) ERROR: CreateProcessEntryCommon:334: getpwuid(0) failed 2
+</span><span md-src-pos="16419..16499">&lt;3&gt;WSL (27) ERROR: CreateProcessEntryCommon:505: execvpe /bin/sh failed 2
+</span><span md-src-pos="16499..16592">&lt;3&gt;WSL (27) ERROR: CreateProcessEntryCommon:508: Create process not expected to return
+</span><span md-src-pos="16499..16502"></span></code></pre>
+   <h2 id="the-ubuntu-user-password-was-not-documentedforgotten" md-src-pos="16504..16560">The Ubuntu user password was not documented/forgotten</h2>
+   <p md-src-pos="16561..16657"><span md-src-pos="16561..16589">You can reset an Ubuntu user</span>'<span md-src-pos="16590..16656">s password by running the following commands in Windows Powershell</span>:</p>
+   <pre class="code-fence" md-src-pos="16658..16687"><div class="code-fence-highlighter-copy-button" data-fence-content="d3NsIC11IHJvb3Q=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-powershell" md-src-pos="16658..16687"><span md-src-pos="16583..16597"></span><span md-src-pos="16597..16609">wsl -u root
+</span><span md-src-pos="16609..16612"></span></code></pre>
+   <p md-src-pos="16688..16903"><span md-src-pos="16688..16745">This will log you into the WSL terminal as the root user.</span> <span md-src-pos="16746..16819">Then run the following command to change the password for the other user,</span> <span md-src-pos="16820..16829">replacing</span> <code md-src-pos="16830..16842">&lt;username&gt;</code> (<span md-src-pos="16844..16852">removing</span> <code md-src-pos="16853..16856">&lt;</code> <span md-src-pos="16857..16860">and</span> <code md-src-pos="16861..16864">&gt;</code>) <span md-src-pos="16866..16902">with the username you need to change</span>:</p>
+   <pre class="code-fence" md-src-pos="16904..16933"><div class="code-fence-highlighter-copy-button" data-fence-content="cGFzc3dkIDx1c2VybmFtZT4=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="16904..16933"><a class="run-icon code-block" href="#" role="button" data-command="Run:7b15e8b8e10570fbf9cd1e6762566419" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="16829..16837"></span><span md-src-pos="16837..16844">passwd </span><span md-src-pos="16844..16845" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="16845..16853">username</span><span md-src-pos="16853..16854" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="16854..16855">
+</span><span md-src-pos="16855..16858"></span></code></pre>
+   <h2 id="ubuntu-only-has-a-root-user" md-src-pos="16935..16967">Ubuntu only has a <code md-src-pos="16956..16962">root</code> user</h2>
+   <p md-src-pos="16968..17095"><span md-src-pos="16968..16986">If you only have a</span> <code md-src-pos="16987..16993">root</code> <span md-src-pos="16994..17009">user in Ubuntu,</span> <span md-src-pos="17010..17093">you must create a new user and set it as default by running the following commands.</span></p>
+   <p md-src-pos="17097..17162"><span md-src-pos="17097..17111">In Powershell,</span> <span md-src-pos="17112..17119">run the</span> <code md-src-pos="17120..17125">wsl</code> <span md-src-pos="17126..17161">command to open the Ubuntu terminal</span>:</p>
+   <pre class="code-fence" md-src-pos="17163..17184"><div class="code-fence-highlighter-copy-button" data-fence-content="d3Ns">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-powershell" md-src-pos="17163..17184"><span md-src-pos="17088..17102"></span><span md-src-pos="17102..17106">wsl
+</span><span md-src-pos="17106..17109"></span></code></pre>
+   <p md-src-pos="17186..17411"><span md-src-pos="17186..17209">In the Ubuntu terminal,</span> <span md-src-pos="17210..17257">run the following commands to create a new user</span><br><em md-src-pos="17261..17411">Replace <code md-src-pos="17270..17282">&lt;username&gt;</code>, including the <code md-src-pos="17298..17301">&lt;</code> brackets, with the desired username. Usernames must contain only lowercases letters, underscores, and dashes</em></p>
+   <pre class="code-fence" md-src-pos="17412..17442"><div class="code-fence-highlighter-copy-button" data-fence-content="YWRkdXNlciA8dXNlcm5hbWU+">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="17412..17442"><a class="run-icon code-block" href="#" role="button" data-command="Run:3032ed78ae18a5d0484c60071049f902" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="17337..17345"></span><span md-src-pos="17345..17353">adduser </span><span md-src-pos="17353..17354" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="17354..17362">username</span><span md-src-pos="17362..17363" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="17363..17364">
+</span><span md-src-pos="17364..17367"></span></code></pre>
+   <p md-src-pos="17443..17474"><span md-src-pos="17443..17472">You will be prompted to enter</span>:</p>
+   <ul md-src-pos="17475..17674">
+    <li md-src-pos="17475..17546">a password for the new user, <strong md-src-pos="17506..17545">make sure to document this password</strong>!</li>
+    <li md-src-pos="17547..17629">several other name &amp; number details, which should be skipped by pressing <code md-src-pos="17622..17629">Enter</code></li>
+    <li md-src-pos="17630..17674">confirm by typing <code md-src-pos="17650..17653">Y</code> and pressing <code md-src-pos="17667..17674">Enter</code></li>
+   </ul>
+   <p md-src-pos="17676..17743"><span md-src-pos="17676..17681">Then,</span> <span md-src-pos="17682..17701">add the user to the</span> <code md-src-pos="17702..17708">sudo</code> <span md-src-pos="17709..17743">group to give it admin permissions</span></p>
+   <pre class="code-fence" md-src-pos="17744..17783"><div class="code-fence-highlighter-copy-button" data-fence-content="dXNlcm1vZCAtYUcgc3VkbyA8dXNlcm5hbWU+">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="17744..17783"><a class="run-icon code-block" href="#" role="button" data-command="Run:179a12486ae1f8aba76417c795dee5ff" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="17669..17677"></span><span md-src-pos="17677..17694">usermod -aG sudo </span><span md-src-pos="17694..17695" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="17695..17703">username</span><span md-src-pos="17703..17704" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="17704..17705">
+</span><span md-src-pos="17705..17708"></span></code></pre>
+   <p md-src-pos="17785..17851"><span md-src-pos="17785..17808">And add the user to the</span> <code md-src-pos="17809..17817">docker</code> <span md-src-pos="17818..17851">group to give it access to docker</span></p>
+   <pre class="code-fence" md-src-pos="17852..17893"><div class="code-fence-highlighter-copy-button" data-fence-content="dXNlcm1vZCAtYUcgZG9ja2VyIDx1c2VybmFtZT4=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="17852..17893"><a class="run-icon code-block" href="#" role="button" data-command="Run:119760227e17d9170f2f1c25ba0134a5" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="17777..17785"></span><span md-src-pos="17785..17804">usermod -aG docker </span><span md-src-pos="17804..17805" style="color: rgb(186, 172, 255);">&lt;</span><span md-src-pos="17805..17813">username</span><span md-src-pos="17813..17814" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="17814..17815">
+</span><span md-src-pos="17815..17818"></span></code></pre>
+   <p md-src-pos="17895..17942"><span md-src-pos="17895..17906">Delete root</span>'<span md-src-pos="17907..17922">s copy of porta</span> (<span md-src-pos="17924..17941">in case it exists</span>)</p>
+   <pre class="code-fence" md-src-pos="17943..17978"><div class="code-fence-highlighter-copy-button" data-fence-content="cm0gLXJmIC9ob21lL3Jvb3QvcG9ydGE=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="17943..17978"><a class="run-icon code-block" href="#" role="button" data-command="Run:6766d9dbc4e3b1180264485ca14a111c" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="17868..17876"></span><span md-src-pos="17876..17900">rm -rf /home/root/porta
+</span><span md-src-pos="17900..17903"></span></code></pre>
+   <p md-src-pos="17980..18154"><span md-src-pos="17980..17988">Finally,</span> <span md-src-pos="17989..18019">return to Powershell by typing</span> <code md-src-pos="18020..18026">exit</code> <span md-src-pos="18027..18038">and hitting</span> <code md-src-pos="18039..18046">Enter</code> <span md-src-pos="18047..18070">in the Ubuntu terminal,</span> <span md-src-pos="18071..18153">and then run the following command to set the new user as the default user for WSL</span>:</p>
+   <pre class="code-fence" md-src-pos="18155..18213"><div class="code-fence-highlighter-copy-button" data-fence-content="dWJ1bnR1IGNvbmZpZyAtLWRlZmF1bHQtdXNlciA8dXNlcm5hbWU+">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-powershell" md-src-pos="18155..18213"><span md-src-pos="18080..18095"></span><span md-src-pos="18095..18135">ubuntu config --default-user &lt;username&gt;
+</span><span md-src-pos="18135..18138"></span></code></pre>
+   <h2 id="permission-denied-while-trying-to-connect-to-the-docker-daemon-socket" md-src-pos="18215..18287">Permission denied while trying to connect to the Docker daemon socket</h2>
+   <p md-src-pos="18288..18343"><span md-src-pos="18288..18343">Your ubuntu user may not have permission to use docker.</span></p>
+   <ol md-src-pos="18345..18381">
+    <li md-src-pos="18345..18381">Make sure the docker group exists</li>
+   </ol>
+   <pre class="code-fence" md-src-pos="18382..18410"><div class="code-fence-highlighter-copy-button" data-fence-content="c3VkbyBncm91cGFkZCBkb2NrZXI=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18382..18410"><span md-src-pos="18382..18386"></span><span md-src-pos="18386..18407">sudo groupadd docker
+</span><span md-src-pos="18407..18410"></span></code></pre>
+   <ol start="2" md-src-pos="18412..18511">
+    <li md-src-pos="18412..18511">Add your user to the docker group (<code md-src-pos="18450..18459">${USER}</code> will automatically fill in your username when run).</li>
+   </ol>
+   <pre class="code-fence" md-src-pos="18512..18551"><div class="code-fence-highlighter-copy-button" data-fence-content="c3VkbyB1c2VybW9kIC1hRyBkb2NrZXIgJHtVU0VSfQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18512..18551"><span md-src-pos="18512..18516"></span><span md-src-pos="18516..18548">sudo usermod -aG docker ${USER}
+</span><span md-src-pos="18548..18551"></span></code></pre>
+   <ol start="3" md-src-pos="18553..18610">
+    <li md-src-pos="18553..18610">Log out and back in so that your groups are refreshed:</li>
+   </ol>
+   <pre class="code-fence" md-src-pos="18611..18632"><div class="code-fence-highlighter-copy-button" data-fence-content="c3UgLXMgJHtVU0VSfQ==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18611..18632"><span md-src-pos="18611..18615"></span><span md-src-pos="18615..18629">su -s ${USER}
+</span><span md-src-pos="18629..18632"></span></code></pre>
+   <p md-src-pos="18633..18763"><span md-src-pos="18633..18659">If the above command doesn</span>'<span md-src-pos="18660..18680">t appear successful,</span> <span md-src-pos="18681..18763">you can just close the terminal window and re-open it to accomplish the same thing</span></p>
+   <ol start="4" md-src-pos="18765..18815">
+    <li md-src-pos="18765..18815">Check your groups; you should see docker listed</li>
+   </ol>
+   <pre class="code-fence" md-src-pos="18816..18830"><div class="code-fence-highlighter-copy-button" data-fence-content="Z3JvdXBz">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="18816..18830"><span md-src-pos="18816..18820"></span><span md-src-pos="18820..18827">groups
+</span><span md-src-pos="18827..18830"></span></code></pre>
+   <ol start="5" md-src-pos="18832..19017">
+    <li md-src-pos="18832..19017">Verify that you can now use docker commands (If you have no internet access, this command may fail and that is okay, you just don't want to see the same "permission denied" error)</li>
+   </ol>
+   <pre class="code-fence" md-src-pos="19018..19048"><div class="code-fence-highlighter-copy-button" data-fence-content="ZG9ja2VyIHJ1biBoZWxsby13b3JsZA==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="19018..19048"><span md-src-pos="19018..19022"></span><span md-src-pos="19022..19045">docker run hello-world
+</span><span md-src-pos="19045..19048"></span></code></pre>
+   <ol start="6" md-src-pos="19050..19089">
+    <li md-src-pos="19050..19089">Try running the install script again</li>
+   </ol>
+   <h2 id="warning-error-loading-config-file-homeuserdockerconfigjson---stat-homeuserdockerconfigjson-permission-denied" md-src-pos="19092..19218">WARNING: Error loading config file: /home/user/.docker/config.json - stat /home/user/.docker/config.json: permission denied</h2>
+   <p md-src-pos="19219..19353"><span md-src-pos="19219..19225">Change</span> <code md-src-pos="19226..19235">.docker</code>'<span md-src-pos="19236..19292">s ownership and permissions using the following commands</span> (<code md-src-pos="19294..19301">$USER</code> <span md-src-pos="19302..19351">will automatically fill in your username when run</span>):</p>
+   <pre class="code-fence" md-src-pos="19354..19449"><div class="code-fence-highlighter-copy-button" data-fence-content="c3VkbyBjaG93biAiJFVTRVIiOiIkVVNFUiIgL2hvbWUvIiRVU0VSIi8uZG9ja2VyIC1SCnN1ZG8gY2htb2QgZytyd3ggIiRIT01FLy5kb2NrZXIiIC1S">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code md-src-pos="19354..19449"><span md-src-pos="19354..19358"></span><span md-src-pos="19358..19440">sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+</span><span md-src-pos="19440..19486">sudo chmod g+rwx "$HOME/.docker" -R
+</span><span md-src-pos="19446..19449"></span></code></pre>
+   <h2 id="docker-desktop---unexpected-wsl-error" md-src-pos="19451..19491">Docker Desktop - Unexpected WSL error</h2>
+   <p md-src-pos="19492..19558"><span md-src-pos="19492..19558">An unexpected error was encountered while executing a WSL command…</span></p>
+   <p md-src-pos="19560..19794"><span md-src-pos="19560..19573">In Powershell</span> (<span md-src-pos="19575..19589">not cmd or WSL</span>)<span md-src-pos="19590..19591">,</span> <span md-src-pos="19592..19597">check</span> <code md-src-pos="19598..19612">wsl --status</code><span md-src-pos="19612..19613">,</span> <span md-src-pos="19614..19628">if you receive</span> "<span md-src-pos="19630..19691">WSL2 is not supported with your current machine configuration</span>" <span md-src-pos="19693..19744">then you need to enable virtualization in the BIOS.</span> <span md-src-pos="19745..19794">This process will vary depending on your machine.</span></p>
+   <h2 id="docker-installation-errors---wsl-update-failed-or-similar" md-src-pos="19797..19859">Docker Installation Errors - "wsl update failed" or similar</h2>
+   <p md-src-pos="19860..20157"><span md-src-pos="19860..19939">If you encounter an error regarding WSL updates when installing Docker Desktop,</span> <span md-src-pos="19940..20028">make sure WSL is up to date by following the instructions in the troubleshooting section</span> "<a href="#error-0x8024500c-after-wsl---update" md-src-pos="20030..20106">Error: 0x8024500c after wsl --update</a>"<span md-src-pos="20107..20108">,</span> <span md-src-pos="20109..20157">then uninstall Docker Desktop and re-install it.</span></p>
+   <p md-src-pos="20159..20337"><span md-src-pos="20159..20217">If you continue to encounter errors regarding WSL updates,</span> <span md-src-pos="20218..20261">uninstall Docker Desktop and re-install it,</span> <span md-src-pos="20262..20296">but this time under Configuration,</span> <span md-src-pos="20297..20337">DON’T check Use WSL2 instead of Hyper-V.</span></p>
+   <p md-src-pos="20339..20442"><span md-src-pos="20339..20366">Once install has completed,</span> <span md-src-pos="20367..20400">Docker will prompt you to reboot.</span> <span md-src-pos="20401..20414">After reboot,</span> <span md-src-pos="20415..20442">start Docker Desktop again.</span></p>
+   <p md-src-pos="20444..20464"><span md-src-pos="20444..20464">Navigate to Settings</span></p>
+   <p md-src-pos="20466..20533"><span md-src-pos="20466..20471">Check</span> "<span md-src-pos="20473..20498">Use the WSL2 based engine</span>"<span md-src-pos="20499..20500">,</span> <span md-src-pos="20501..20512">then select</span> "<span md-src-pos="20514..20519">Apply</span> <span md-src-pos="20520..20521">&amp;</span> <span md-src-pos="20522..20529">restart</span>"<span md-src-pos="20530..20531">.</span></p>
+   <h2 id="error-0x8024500c-after-wsl---update" md-src-pos="20536..20575">Error: 0x8024500c after wsl --update</h2>
+   <p md-src-pos="20576..20893"><span md-src-pos="20576..20606">Some installs with Windows 10,</span> <span md-src-pos="20607..20644">or without using the Microsoft store,</span> <span md-src-pos="20645..20669">will display this error.</span> <span md-src-pos="20670..20717">Check the current WSL Kernel version by running</span> <code md-src-pos="20718..20733">wsl --version</code> (<span md-src-pos="20735..20737">or</span> <code md-src-pos="20738..20752">wsl --status</code>) <span md-src-pos="20754..20794">in Powershell and checking the entry for</span> <code md-src-pos="20795..20811">Kernel version</code><span md-src-pos="20811..20812">,</span> <span md-src-pos="20813..20836">which should begin with</span> <code md-src-pos="20837..20840">5</code> (<span md-src-pos="20842..20856">we do NOT want</span> <code md-src-pos="20857..20870">WSL Version</code><span md-src-pos="20870..20871">,</span> <span md-src-pos="20872..20889">that is different</span>)<span md-src-pos="20890..20891">.</span></p>
+   <p md-src-pos="20895..21011"><span md-src-pos="20895..20948">If the Kernel version is not greater than or equal to</span> <code md-src-pos="20949..20961">5.10.102.2</code><span md-src-pos="20961..20962">,</span> <span md-src-pos="20963..21010">then we will need to manually update the kernel</span>:</p>
+   <ul md-src-pos="21013..21777">
+    <li md-src-pos="21013..21228">Visit <a href="https://www.catalog.update.microsoft.com/Search.aspx?q=windows%20subsystem%20for%20linux%20update" md-src-pos="21021..21148">Microsoft's update catalog</a> and sort by last updated. <em md-src-pos="21175..21226">As of writing, the latest version is <code md-src-pos="21213..21225">5.10.102.2</code></em>.</li>
+    <li md-src-pos="21229..21278">Download the <code md-src-pos="21244..21250">.cab</code> file for the latest version</li>
+    <li md-src-pos="21279..21346">Double-click the <code md-src-pos="21298..21304">.cab</code> file to extract the <code md-src-pos="21325..21331">.msi</code> file within in</li>
+    <li md-src-pos="21347..21407">Run <code md-src-pos="21353..21373">wsl_update_x64.msi</code> to install the WSL2 kernel update</li>
+    <li md-src-pos="21408..21442">Open powershell as administrator</li>
+    <li md-src-pos="21443..21576">In powershell, run <code md-src-pos="21464..21550">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code> to enable the new version</li>
+    <li md-src-pos="21577..21612">Run <code md-src-pos="21583..21612">wsl --set-default-version 2</code></li>
+    <li md-src-pos="21613..21777">Check your WSL version with <code md-src-pos="21643..21658">wsl --version</code> (or <code md-src-pos="21663..21677">wsl --status</code>)
+     <ul md-src-pos="21681..21777">
+      <li md-src-pos="21681..21731">the WSL version should be 2.X.X (start with 2)</li>
+      <li md-src-pos="21734..21777">the Kernel version should be 5.10.102.2</li>
+     </ul></li>
+   </ul>
+   <p md-src-pos="21784..21944"><span md-src-pos="21784..21816">Check the WSL version by running</span> <code md-src-pos="21817..21832">wsl --version</code> (<span md-src-pos="21834..21836">or</span> <code md-src-pos="21837..21851">wsl --status</code>) <span md-src-pos="21853..21867">in Powershell.</span> <span md-src-pos="21868..21874">If the</span> <code md-src-pos="21875..21890">wsl --version</code> <span md-src-pos="21891..21894">and</span> <code md-src-pos="21895..21909">wsl --status</code> <span md-src-pos="21910..21931">commands do not work,</span> <span md-src-pos="21932..21943">try running</span>:</p>
+   <pre class="code-fence" md-src-pos="21945..22051"><div class="code-fence-highlighter-copy-button" data-fence-content="KEdldC1BcHB4UGFja2FnZSB8ID8gTmFtZSAtZXEgIk1pY3Jvc29mdENvcnBvcmF0aW9uSUkuV2luZG93c1N1YnN5c3RlbWZvckxpbnV4IikuVmVyc2lvbg==">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Powershell" md-src-pos="21945..22051"><span md-src-pos="21870..21884"></span><span md-src-pos="21884..21914">(Get-AppxPackage | ? Name -eq </span><span md-src-pos="21914..21915" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="21915..21962" style="color: rgb(122, 248, 202);">MicrosoftCorporationII.WindowsSubsystemforLinux</span><span md-src-pos="21962..21963" style="color: rgb(122, 248, 202);">"</span><span md-src-pos="21963..21973">).Version
+</span><span md-src-pos="21973..21976"></span></code></pre>
+   <p md-src-pos="22053..22244"><span md-src-pos="22053..22106">If the version listed is not greater than or equal to</span> <code md-src-pos="22107..22115">2.0.14</code><span md-src-pos="22115..22116">,</span> <span md-src-pos="22117..22188">then you will need to manually update WSL by taking the following steps</span> (<span md-src-pos="22190..22241">as listed in Updating WSL 2 without Microsoft Store</span>) :</p>
+   <p md-src-pos="22246..22473"><span md-src-pos="22246..22258">Download the</span> <code md-src-pos="22259..22267">2.0.14</code> <span md-src-pos="22268..22308">WSL app package and msi release from the</span> <a href="https://github.com/microsoft/WSL/releases/tag/2.0.14" md-src-pos="22309..22401">WSL Releases page in the Github repo</a><span md-src-pos="22401..22402">.</span> <span md-src-pos="22403..22446">This will be the assets with file extension</span> <code md-src-pos="22447..22460">.msixbundle</code> <span md-src-pos="22461..22464">and</span> <code md-src-pos="22465..22471">.msi</code><span md-src-pos="22471..22472">.</span></p>
+   <p md-src-pos="22475..22552"><span md-src-pos="22475..22478">Run</span> <code md-src-pos="22479..22495">wsl --shutdown</code> <span md-src-pos="22496..22550">and reboot to make sure that WSL is not in use at all.</span></p>
+   <p md-src-pos="22554..22674"><span md-src-pos="22554..22609">Start an Administrator PowerShell and run the following</span> (<span md-src-pos="22611..22672">adjust the package name for the latest version you downloaded</span>):</p>
+   <pre class="code-fence" md-src-pos="22675..22761"><div class="code-fence-highlighter-copy-button" data-fence-content="QWRkLUFwcHhQYWNrYWdlIDxwYXRoLnRvPi9NaWNyb3NvZnQuV1NMXzEuMC4wLjBfeDY0X0FSTTY0Lm1zaXhidW5kbGU=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install/docs" src="http://localhost:63342/markdownPreview/1767837286/offline/install/docs?_ijt=hgrttmsna6og0486qusm6o0d51">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-Powershell" md-src-pos="22675..22761"><span md-src-pos="22600..22614"></span><span md-src-pos="22614..22655">Add-AppxPackage &lt;path.to&gt;/Microsoft.WSL_1</span><span md-src-pos="22655..22657" style="color: rgb(255, 150, 104);">.0</span><span md-src-pos="22657..22659" style="color: rgb(255, 150, 104);">.0</span><span md-src-pos="22659..22661" style="color: rgb(255, 150, 104);">.0</span><span md-src-pos="22661..22683">_x64_ARM64.msixbundle
+</span><span md-src-pos="22683..22686"></span></code></pre>
+   <p md-src-pos="22763..22859"><span md-src-pos="22763..22812">If you run into problems regarding windows store,</span> <span md-src-pos="22813..22837">try installing using the</span> <code md-src-pos="22838..22844">.msi</code> <span md-src-pos="22845..22858">file instead.</span></p>
+   <p md-src-pos="22861..23019"><span md-src-pos="22861..22878">After installing,</span> <span md-src-pos="22879..22909">check the new WSL version with</span> <code md-src-pos="22910..22925">wsl --version</code> <span md-src-pos="22926..22928">or</span> <code md-src-pos="22929..23019">(Get-AppxPackage | ? Name -eq "MicrosoftCorporationII.WindowsSubsystemforLinux").Version</code></p>
+   <p md-src-pos="23021..23027"><span md-src-pos="23021..23027">Reboot</span></p>
+  </div>
+ </body>
+</html>

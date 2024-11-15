@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+ <head>
+  <title>INSTALLATION README | Porta On Prem</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+script-src 'self';
+style-src 'unsafe-inline';
+img-src file: *;
+connect-src 'none';
+font-src * data: *;
+object-src 'none';
+media-src 'none';
+child-src 'none';">
+  <style>/* Reworked by IntelliJ Team The MIT License (MIT) Copyright (c) JetBrains Adapted from https://github.com/sindresorhus/github-markdown-css The MIT License (MIT) Copyright (c) Sindre Sorhus &lt;sindresorhus@gmail.com&gt; (sindresorhus.com) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */ @font-face { font-family: octicons-anchor; src: url(data:font/woff;charset=utf-8;base64,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) format('woff'); } body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, freesans, sans-serif; font-size: 14px; line-height: 1.6; word-wrap: break-word; margin: 0 2em; } strong { font-weight: bold; } img { border: 0; } input { color: inherit; font: inherit; margin: 0; line-height: normal; } html input[disabled] { cursor: default; } input[type="checkbox"] { box-sizing: border-box; padding: 0; } body * { box-sizing: border-box; } input { font: 13px/1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; } a { text-decoration: none; } a:hover, a:active { text-decoration: underline; } hr { height: 1px; padding: 0; margin: 20px 0; border: 0 none; } hr:before { display: table; content: ""; } hr:after { display: table; clear: both; content: ""; } blockquote { margin: 0; } ul, ol { padding: 0; margin-top: 0; margin-bottom: 0; } ol ol, ul ol { list-style-type: lower-roman; } ul ul ol, ul ol ol, ol ul ol, ol ol ol { list-style-type: lower-alpha; } dd { margin-left: 0; } .octicon { font: normal normal normal 16px/1 octicons-anchor; display: inline-block; text-decoration: none; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .octicon-link:before { content: '\f05c'; } .markdown-body &gt; *:first-child { margin-top: 0 !important; } .markdown-body &gt; *:last-child { margin-bottom: 0 !important; } .anchor { position: absolute; top: 0; left: 0; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; } .anchor:focus { outline: none; } h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; } h1 .octicon-link, h2 .octicon-link, h3 .octicon-link, h4 .octicon-link, h5 .octicon-link, h6 .octicon-link { display: none; color: #000; vertical-align: middle; } h1:hover .anchor, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; } h1:hover .anchor .octicon-link, h2:hover .anchor .octicon-link, h3:hover .anchor .octicon-link, h4:hover .anchor .octicon-link, h5:hover .anchor .octicon-link, h6:hover .anchor .octicon-link { display: inline-block; } h1 { font-size: 2.2em; padding-top: 0.6em; } h1 .anchor { line-height: 1; } h2 { font-size: 1.8em; line-height: 1.2; padding-top: 0.6em; } h2 .anchor { line-height: 1.2; } h3 { font-size: 1.3em; line-height: 1; padding-top: 0.6em; } h3 .anchor { line-height: 1.2; } h4 { font-size: 1em; } h4 .anchor { line-height: 1.2; } h5 { font-size: 1em; } h5 .anchor { line-height: 1.1; } h6 { font-size: 1em; } h6 .anchor { line-height: 1.1; } p, blockquote, ul, ol, dl, table, pre { margin-top: 16px; margin-bottom: 16px; } pre.frontmatter-header { background-color: transparent; margin: 0; padding: 0; } ul, ol { padding-left: 2em; } ul ul, ul ol, ol ol, ol ul { margin-top: 0; margin-bottom: 0; } li &gt; p { margin-top: 0; margin-bottom: 0; } dl { padding: 0; } dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; } dl dd { padding: 0 16px; margin-bottom: 16px; } blockquote { padding: 10px 10px 10px 16px; border-left: 2px solid; border-radius: 0 3px 3px 0; } blockquote &gt; :first-child { margin-top: 0; } blockquote &gt; :last-child { margin-bottom: 0; } table { display: block; width: 100%; overflow: auto; word-break: normal; border-collapse: collapse; border-spacing: 0; font-size: 1em; } table th { font-weight: bold; } table th, table td { padding: 6px 13px; background: transparent; } table tr { border-top: 1px solid; } img { max-width: 100%; box-sizing: border-box; } code { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } pre &gt; code { padding: 0; margin: 0; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0; } .highlight { margin-bottom: 16px; } .highlight pre, pre { font: 0.85em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 16px; overflow: auto; line-height: 1.45; border-radius: 3px; } pre code { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } pre code:before, pre code:after { content: normal; } kbd { font: 0.9em "JetBrains Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace; padding: 0.2em 0.4em; margin: 2px; border-radius: 3px; } .task-list-item { list-style-type: none; } .task-list-item + .task-list-item { margin-top: 3px; } .task-list-item input { margin: 0 0.35em 0.25em -0.6em; vertical-align: middle; } :checked + .radio-label { z-index: 1; position: relative; } span.user-del { text-decoration: line-through; } ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-thumb { -webkit-border-radius: 10px; } ::-webkit-scrollbar-track:vertical { -webkit-box-shadow: -1px 0 0 #ededed; } ::-webkit-scrollbar-track { background-color: transparent; } ::-webkit-scrollbar { width: 6px; }</style>
+  <style>:root { --default-font-size: 13px; } body { background-color: rgba(34, 36, 54, 255.0); font-size: var(--default-font-size) !important; } body, p, blockquote, ul, ol, dl, table, pre, code, tr { color: rgba(200, 211, 245, 255.0); } a { color: rgba(116, 160, 241, 255.0); } table td, table th { border: 1px solid rgba(34, 36, 54, 255.0); } hr { background-color: rgba(34, 36, 54, 255.0); } kbd, tr { border: 1px solid rgba(34, 36, 54, 255.0); } h6 { color: rgba(169, 184, 232, 255.0); } blockquote { border-left: 2px solid rgba(116, 160, 241, 0.4); } blockquote, code, pre { background-color: rgba(212, 222, 231, 0.09803921568627451); } ::-webkit-scrollbar { width: 10px; height: 10px; background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-track:hover { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-thumb { background-color: rgba(79, 214, 190, 0.752941); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.278431); outline-offset: -1px; } ::-webkit-scrollbar-thumb:hover { background-color: rgba(79, 214, 190, 1.000000); border-radius: 0px; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0); background-clip: padding-box; outline: 1px solid rgba(56, 56, 56, 0.349020); outline-offset: -1px; } ::-webkit-scrollbar-corner { background-color: rgba(0, 0, 0, 0); } ::-webkit-scrollbar-button { display:none; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .code-fence-highlighter-copy-button { display: flex; position: absolute; float: left; margin-left: -1em; margin-top: -1em; } .code-fence-highlighter-copy-button-icon { visibility: hidden; max-width: 1em; } .code-fence:hover .code-fence-highlighter-copy-button-icon { visibility: visible; /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon.png"); } .code-fence:hover .code-fence-highlighter-copy-button:hover .code-fence-highlighter-copy-button-icon { /*noinspection CssUnknownTarget*/ content: url("copy-button-copy-icon-hovered.png"); cursor: pointer; } .code-fence-highlighter-copy-button .tooltiptext { visibility: hidden; width: 120px; background-color: rgba(85, 85, 85, 0.4); color: #fff; text-align: center; border-radius: 6px; padding: 2px 0; position: absolute; font-size: 10px; z-index: 1; top: -4px; left: 120%; opacity: 0; transition: opacity 0.3s; } .code-fence-highlighter-copy-button:hover .tooltiptext { visibility: visible; opacity: 1; }</style>
+  <style>/* Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. */ .run-icon &gt; img { max-width: 1em; vertical-align: text-top; margin-right: 0.3em; } .code-block { position: absolute; left: 1em; } .hidden { display: none; }</style>
+ </head>
+ <body>
+  <div md-src-pos="0..13942">
+   <h1 id="instructions" md-src-pos="1..15">Instructions</h1>
+   <p md-src-pos="17..111"><span md-src-pos="17..53">Installation and Update instructions</span> <strong md-src-pos="54..108">must be run for each machine running Porta On-Prem</strong><span md-src-pos="108..109">.</span></p>
+   <ul md-src-pos="113..325">
+    <li md-src-pos="113..167"><a href="#installing-porta-on-prem" md-src-pos="115..167">First Time Installation</a></li>
+    <li md-src-pos="168..231"><a href="#update-existing-installation" md-src-pos="170..231">Update Existing Installation</a></li>
+    <li md-src-pos="232..287"><a href="#porta-integrations-setup" md-src-pos="234..287">Porta Integrations Setup</a></li>
+    <li md-src-pos="288..325"><a href="troubleshooting.html" md-src-pos="290..325">Installation/Update Troubleshooting</a></li>
+   </ul>
+   <h1 id="see-also" md-src-pos="327..337">See Also</h1>
+   <ul md-src-pos="338..676">
+    <li md-src-pos="338..388"><a href="docs/machine-setup.html" md-src-pos="340..388">Initial Machine Setup</a></li>
+    <li md-src-pos="389..457"><a href="docs/disaster-backup-and-restore.html" md-src-pos="391..457">Disaster Backup &amp; Restore</a></li>
+    <li md-src-pos="458..510"><a href="docs/support-cheatsheet.html" md-src-pos="460..510">Support Cheatsheet</a></li>
+    <li md-src-pos="511..593"><a href="docs/group-replication-troubleshooting.html" md-src-pos="513..593">Group Replication Troubleshooting</a></li>
+    <li md-src-pos="594..676"><a href="docs/replication-group-member-recovery.html" md-src-pos="596..676">Group Replication Member Recovery</a></li>
+   </ul>
+   <hr>
+   <h1 id="requirements-before-installation" md-src-pos="683..717">Requirements Before Installation</h1>
+   <p md-src-pos="718..834"><span md-src-pos="718..834">Please work with IT to ensure the machines are set up on the same network before beginning the installation process.</span></p>
+   <p md-src-pos="836..945"><span md-src-pos="836..895">Please ensure that the machine has been prepared beforehand</span>: <a href="docs/machine-setup.html" md-src-pos="897..945">Initial Machine Setup</a></p>
+   <h1 id="installing-porta-on-prem" md-src-pos="947..973">Installing Porta On Prem</h1>
+   <p md-src-pos="974..1099"><span md-src-pos="974..1022">This process covers installing on a new machine,</span> <span md-src-pos="1023..1099">or running a fresh install for an existing installation so that it is wiped.</span></p>
+   <ol md-src-pos="1101..5284">
+    <li md-src-pos="1101..1131">
+     <p md-src-pos="1104..1131">Make sure Docker is running</p></li>
+    <li md-src-pos="1133..1341">
+     <p md-src-pos="1136..1223">Transfer the porta-onprem-bundle.zip archive to the Desktop of machine being installed.</p>
+     <ul md-src-pos="1227..1341">
+      <li md-src-pos="1227..1341">If you have internet access, this can be found at <a href="https://staging.porta.solutions" md-src-pos="1280..1311">https://staging.porta.solutions</a> under the Help menu &gt; Plugins</li>
+     </ul></li>
+    <li md-src-pos="1343..1395">
+     <p md-src-pos="1346..1395">Right-click and extract the files to the Desktop.</p></li>
+    <li md-src-pos="1397..1705">
+     <p md-src-pos="1400..1488">Open the unzipped porta-onprem-bundle folder and navigate to the <code md-src-pos="1465..1480">porta-helpers</code> folder.</p>
+     <blockquote md-src-pos="1492..1705">
+      <p md-src-pos="1495..1705"><span md-src-pos="1495..1519">This folder contains the</span> <code md-src-pos="1520..1529">install</code> <span md-src-pos="1530..1533">and</span> <code md-src-pos="1534..1542">update</code> <span md-src-pos="1543..1605">scripts that will be used to install and update Porta On Prem,</span> <span md-src-pos="1606..1620">as well as the</span> <code md-src-pos="1621..1631">database</code> <span md-src-pos="1632..1705">folder which contains the helper scripts for running database operations.</span></p>
+     </blockquote></li>
+    <li md-src-pos="1707..1808">
+     <p md-src-pos="1710..1808">Right-click on <code md-src-pos="1725..1738">install.bat</code> and choose "Run as Administrator" to begin the installation process.</p></li>
+    <li md-src-pos="1810..1999">
+     <p md-src-pos="1813..1999">If you are setting up multiple machines that will be running Porta On Prem, when you are prompted about database replication, type <code md-src-pos="1944..1947">y</code> and press enter, otherwise type <code md-src-pos="1980..1983">n</code> and press enter</p></li>
+    <li md-src-pos="2001..2156">
+     <p md-src-pos="2004..2156">When prompted, enter the Porta machine <strong md-src-pos="2043..2051">type</strong>, this would be <code md-src-pos="2067..2073">main</code>, <code md-src-pos="2075..2083">backup</code>, or <code md-src-pos="2088..2097">arbiter</code>, depending on which machine you are currently working with</p></li>
+    <li md-src-pos="2158..2511">
+     <p md-src-pos="2161..2511">When prompted, enter or confirm the Porta machine IP<br><em md-src-pos="2219..2511"><strong md-src-pos="2220..2228">NOTE</strong>: The IP address required here <strong md-src-pos="2259..2272">cannot be</strong> 127.0.0.1. It is the IPv4 address for the machine's current network connection. The IPv4 address can be observed by running <code md-src-pos="2397..2407">ipconfig</code> in Powershell or cmd.exe and looking under the correct network adapter's (often d3net) value for IPv4.</em></p></li>
+    <li md-src-pos="2513..2570">
+     <p md-src-pos="2516..2570">If prompted, enter the IP for the other Porta machines</p></li>
+    <li md-src-pos="2572..3988">
+     <p md-src-pos="2576..2705">Wait for the installation to finish. It can take up to 10 minutes to complete. If an error occurs, the process will be aborted.</p>
+     <ul md-src-pos="2710..2854">
+      <li md-src-pos="2710..2854">You may be prompted with <code md-src-pos="2737..2812">gzip: porta-images.tar already exists; do you wish to overwrite (y or n)?</code> -- type <code md-src-pos="2821..2824">y</code> and press enter to continue</li>
+     </ul>
+     <blockquote md-src-pos="2859..3088">
+      <p md-src-pos="2861..3088"><span md-src-pos="2861..2865">NOTE</span>: <span md-src-pos="2867..2872">Error</span> <code md-src-pos="2873..2920">Error occurred in command: 'xargs docker rmi'</code> <span md-src-pos="2921..2926">after</span> <code md-src-pos="2927..3056">Error response from daemon: conflict: unable to delete 143f1a610ec2 (must be forced) - image is being used by stopped container</code> <span md-src-pos="3057..3072">will not abort,</span> <span md-src-pos="3073..3088">this is normal.</span></p>
+     </blockquote>
+     <p md-src-pos="3094..3357"><strong md-src-pos="3094..3103">NOTE:</strong> <span md-src-pos="3104..3147">During installation of the Porta Front End,</span> <span md-src-pos="3148..3225">you may see what appear to be prompts for user input in the console terminal.</span> <strong md-src-pos="3226..3260">These are not actually prompts</strong><span md-src-pos="3260..3261">,</span> <span md-src-pos="3262..3340">they should be ignored and the installation will continue after a few seconds.</span> <span md-src-pos="3345..3356">For example</span>:</p>
+     <pre class="code-fence" md-src-pos="3362..3988"><div class="code-fence-highlighter-copy-button" data-fence-content="PT09Cj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj09PT09PiBCdWlsZGluZyBQb3J0YSBGcm9udCBFbmQsIHRoaXMgbWF5IHRha2Ugc2V2ZXJhbCBtaW51dGVzLi4uCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj09PQoKCj4gcG9ydGFAMC4xLjAgYnVpbGQKPiBHRU5FUkFURV9TT1VSQ0VNQVA9ZmFsc2UgcmVhY3Qtc2NyaXB0cyBidWlsZAoKQ3JlYXRpbmcgYW4gb3B0aW1pemVkIHByb2R1Y3Rpb24gYnVpbGQuLi4KQnJvd3NlcnNsaXN0OiBjYW5pdXNlLWxpdGUgaXMgb3V0ZGF0ZWQuIFBsZWFzZSBydW46CiAgbnB4IHVwZGF0ZS1icm93c2Vyc2xpc3QtZGJAbGF0ZXN0CiAgV2h5IHlvdSBzaG91bGQgZG8gaXQgcmVndWxhcmx5OiBodHRwczovL2dpdGh1Yi5jb20vYnJvd3NlcnNsaXN0L3VwZGF0ZS1kYiNyZWFkbWU=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install" src="http://localhost:63342/markdownPreview/890414360/offline/install?_ijt=lnukcm4lj2qbe7j74j88g98rip">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="3362..3988"><a class="run-icon code-block" href="#" role="button" data-command="Run:629ffda7b2e0afba8b40db32a3064218" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="3362..3370"></span><span md-src-pos="3370..3374">===
+</span><span md-src-pos="3374..3473">==================================================================================================
+</span><span md-src-pos="3473..3478">=====</span><span md-src-pos="3478..3479" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3479..3539"> Building Porta Front End, this may take several minutes...
+</span><span md-src-pos="3539..3638">==================================================================================================
+</span><span md-src-pos="3638..3642">===
+</span><span md-src-pos="3642..3643">
+</span><span md-src-pos="3643..3644">
+</span><span md-src-pos="3644..3645" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3645..3664"> porta@0.1.0 build
+</span><span md-src-pos="3664..3665" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3665..3711"> GENERATE_SOURCEMAP=false react-scripts build
+</span><span md-src-pos="3711..3712">
+</span><span md-src-pos="3712..3754">Creating an optimized production build...
+</span><span md-src-pos="3754..3806">Browserslist: caniuse-lite is outdated. Please run:
+</span><span md-src-pos="3806..3842">  npx update-browserslist-db@latest
+</span><span md-src-pos="3842..3859">  Why you should </span><span md-src-pos="3859..3861" style="color: rgb(186, 172, 255);">do</span><span md-src-pos="3861..3925"> it regularly: https://github.com/browserslist/update-db#readme
+</span><span md-src-pos="3981..3988"></span></code></pre></li>
+    <li md-src-pos="3990..4223">
+     <p md-src-pos="3994..4223">When the install is nearing completion, you will be prompted with <code md-src-pos="4060..4099">Should this database be bootstrapped?</code>. If this is the main machine, type <code md-src-pos="4135..4138">y</code> and press enter. If this is the backup or arbiter machine, type <code md-src-pos="4203..4206">n</code> and press enter.</p></li>
+    <li md-src-pos="4225..4416">
+     <p md-src-pos="4229..4416">When the installation is complete, you will see a message that the installation was successful, and shortcuts to Porta On Prem and the Porta On Prem backup will be created on the desktop.</p></li>
+    <li md-src-pos="4419..4598">
+     <p md-src-pos="4423..4598">You can double-check the version of Porta that was just installed by navigating to <code md-src-pos="4506..4554">porta-onprem-bundle/porta-helpers/porta-checks</code> and double-clicking on <code md-src-pos="4578..4597">check-version.bat</code>.</p></li>
+    <li md-src-pos="4600..4871">
+     <p md-src-pos="4604..4678"><strong md-src-pos="4604..4678">If this was the main machine, repeat steps 1-16 on the back-up machine</strong></p>
+     <ul md-src-pos="4683..4871">
+      <li md-src-pos="4683..4871">Be sure to wait for the main machine to finish installing before starting the backup machine; the main machine database must be running before the backup machine's database can be set up</li>
+     </ul></li>
+    <li md-src-pos="4873..5155">
+     <p md-src-pos="4877..4954"><strong md-src-pos="4877..4953">If this was the backup machine, repeat steps 1-16 on the arbiter machine</strong></p>
+     <ul md-src-pos="4959..5155">
+      <li md-src-pos="4959..5155">Be sure to wait for the main and backup machines to finish installing before starting the arbiter machine; the other databases must be running before the arbiter machine's database can be set up</li>
+     </ul></li>
+    <li md-src-pos="5161..5284">
+     <p md-src-pos="5165..5284">See <a href="#porta-integrations-setup" md-src-pos="5169..5222">Porta Integrations Setup</a> to set up the Porta Bridge and Unreal plugins (if applicable)</p></li>
+   </ol>
+   <hr>
+   <h1 id="update-existing-installation" md-src-pos="5292..5322">Update Existing Installation</h1>
+   <ol md-src-pos="5324..12577">
+    <li md-src-pos="5324..5436">
+     <p md-src-pos="5327..5436">On the desktop, if there is an existing <code md-src-pos="5367..5392">porta-onprem-bundle.zip</code>, rename it to <code md-src-pos="5407..5436">porta-onprem-bundle-old.zip</code></p></li>
+    <li md-src-pos="5438..5752">
+     <p md-src-pos="5441..5587">On the desktop, open the existing <code md-src-pos="5475..5496">porta-onprem-bundle</code> folder, navigate to the <code md-src-pos="5521..5536">porta-helpers</code> folder, and move the <code md-src-pos="5558..5564">conf</code> folder to the desktop.</p>
+     <blockquote md-src-pos="5591..5752">
+      <p md-src-pos="5593..5752"><span md-src-pos="5593..5752">Thhis folder contains the configuration files for the Porta On Prem installation and we can avoid inputting machine info if we use it with the new installation</span></p>
+     </blockquote></li>
+    <li md-src-pos="5754..5907">
+     <p md-src-pos="5757..5907">Follow steps 1 through 4 in the <a href="#installing-porta-on-prem" md-src-pos="5789..5843">#Installing-Porta-On-Prem</a> section above (they are the same for updates and new installs).</p></li>
+    <li md-src-pos="5909..5982">
+     <p md-src-pos="5912..5982">Move the <code md-src-pos="5921..5927">conf</code> folder from the desktop to the <code md-src-pos="5959..5974">porta-helpers</code> folder.</p></li>
+    <li md-src-pos="5984..6244">
+     <p md-src-pos="5987..6113">Navigate to the <code md-src-pos="6003..6013">database</code>folder, then double-click on <code md-src-pos="6042..6061">create-backup.bat</code> to create a backup of the database before updating.</p>
+     <blockquote md-src-pos="6117..6244">
+      <p md-src-pos="6120..6244"><span md-src-pos="6120..6175">Updating Porta On Prem will not overwrite the database,</span> <span md-src-pos="6176..6244">but it is always a good idea to have a backup before making changes.</span></p>
+     </blockquote></li>
+    <li md-src-pos="6246..6370">
+     <p md-src-pos="6249..6370">In the <code md-src-pos="6256..6271">porta-helpers</code> folder, right-click on <code md-src-pos="6295..6307">update.bat</code> and choose "Run as Administrator" to begin the update process.</p></li>
+    <li md-src-pos="6372..6527">
+     <p md-src-pos="6375..6527">When prompted, enter the Porta machine <strong md-src-pos="6414..6422">type</strong>, this would be <code md-src-pos="6438..6444">main</code>, <code md-src-pos="6446..6454">backup</code>, or <code md-src-pos="6459..6468">arbiter</code>, depending on which machine you are currently working with</p></li>
+    <li md-src-pos="6529..6880">
+     <p md-src-pos="6532..6880">When prompted, enter or confirm the Porta machine IP <em md-src-pos="6588..6880"><strong md-src-pos="6589..6597">NOTE</strong>: The IP address required here <strong md-src-pos="6628..6641">cannot be</strong> 127.0.0.1. It is the IPv4 address for the machine's current network connection. The IPv4 address can be observed by running <code md-src-pos="6766..6776">ipconfig</code> in Powershell or cmd.exe and looking under the correct network adapter's (often d3net) value for IPv4.</em></p></li>
+    <li md-src-pos="6882..7072">
+     <p md-src-pos="6885..7072">If you are setting up multiple machines that will be running Porta On Prem, when you are prompted about database replication, type <code md-src-pos="7016..7019">y</code> and press enter, otherwise type <code md-src-pos="7052..7055">n</code> and press enter.</p></li>
+    <li md-src-pos="7074..8502">
+     <p md-src-pos="7078..7216">Wait for the update to continue. It can take up to 10 minutes for the update to complete. If an error occurs, the process will be aborted.</p>
+     <ul md-src-pos="7221..7363">
+      <li md-src-pos="7221..7363">You may be prompted with <code md-src-pos="7248..7323">gzip: porta-images.tar already exists; do you wish to overwrite (y or n)?</code> -- type <code md-src-pos="7332..7335">y</code> and press enter to continue</li>
+     </ul>
+     <blockquote md-src-pos="7368..7601">
+      <p md-src-pos="7370..7601"><strong md-src-pos="7370..7378">NOTE</strong>: <span md-src-pos="7380..7385">Error</span> <code md-src-pos="7386..7433">Error occurred in command: 'xargs docker rmi'</code> <span md-src-pos="7434..7439">after</span> <code md-src-pos="7440..7569">Error response from daemon: conflict: unable to delete 143f1a610ec2 (must be forced) - image is being used by stopped container</code> <span md-src-pos="7570..7585">will not abort,</span> <span md-src-pos="7586..7601">this is normal.</span></p>
+     </blockquote>
+     <p md-src-pos="7611..7871"><strong md-src-pos="7611..7620">NOTE:</strong> <span md-src-pos="7621..7664">During installation of the Porta Front End,</span> <span md-src-pos="7665..7742">you may see what appear to be prompts for user input in the console terminal.</span> <span md-src-pos="7743..7774">These are not actually prompts,</span> <span md-src-pos="7775..7853">they should be ignored and the installation will continue after a few seconds.</span> <span md-src-pos="7859..7870">For example</span>:</p>
+     <pre class="code-fence" md-src-pos="7876..8502"><div class="code-fence-highlighter-copy-button" data-fence-content="PT09Cj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj09PT09PiBCdWlsZGluZyBQb3J0YSBGcm9udCBFbmQsIHRoaXMgbWF5IHRha2Ugc2V2ZXJhbCBtaW51dGVzLi4uCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj09PQoKCj4gcG9ydGFAMC4xLjAgYnVpbGQKPiBHRU5FUkFURV9TT1VSQ0VNQVA9ZmFsc2UgcmVhY3Qtc2NyaXB0cyBidWlsZAoKQ3JlYXRpbmcgYW4gb3B0aW1pemVkIHByb2R1Y3Rpb24gYnVpbGQuLi4KQnJvd3NlcnNsaXN0OiBjYW5pdXNlLWxpdGUgaXMgb3V0ZGF0ZWQuIFBsZWFzZSBydW46CiAgbnB4IHVwZGF0ZS1icm93c2Vyc2xpc3QtZGJAbGF0ZXN0CiAgV2h5IHlvdSBzaG91bGQgZG8gaXQgcmVndWxhcmx5OiBodHRwczovL2dpdGh1Yi5jb20vYnJvd3NlcnNsaXN0L3VwZGF0ZS1kYiNyZWFkbWU=">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install" src="http://localhost:63342/markdownPreview/890414360/offline/install?_ijt=lnukcm4lj2qbe7j74j88g98rip">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="7876..8502"><a class="run-icon code-block" href="#" role="button" data-command="Run:629ffda7b2e0afba8b40db32a3064218" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="3362..3370"></span><span md-src-pos="3370..3374">===
+</span><span md-src-pos="3374..3473">==================================================================================================
+</span><span md-src-pos="3473..3478">=====</span><span md-src-pos="3478..3479" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3479..3539"> Building Porta Front End, this may take several minutes...
+</span><span md-src-pos="3539..3638">==================================================================================================
+</span><span md-src-pos="3638..3642">===
+</span><span md-src-pos="3642..3643">
+</span><span md-src-pos="3643..3644">
+</span><span md-src-pos="3644..3645" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3645..3664"> porta@0.1.0 build
+</span><span md-src-pos="3664..3665" style="color: rgb(186, 172, 255);">&gt;</span><span md-src-pos="3665..3711"> GENERATE_SOURCEMAP=false react-scripts build
+</span><span md-src-pos="3711..3712">
+</span><span md-src-pos="3712..3754">Creating an optimized production build...
+</span><span md-src-pos="3754..3806">Browserslist: caniuse-lite is outdated. Please run:
+</span><span md-src-pos="3806..3842">  npx update-browserslist-db@latest
+</span><span md-src-pos="3842..3859">  Why you should </span><span md-src-pos="3859..3861" style="color: rgb(186, 172, 255);">do</span><span md-src-pos="3861..3925"> it regularly: https://github.com/browserslist/update-db#readme
+</span><span md-src-pos="3981..3988"></span></code></pre></li>
+    <li md-src-pos="8504..10904">
+     <p md-src-pos="8508..8864">When the update is nearing completion, you will be prompted with <code md-src-pos="8573..8612">Should this database be bootstrapped?</code>. The answer will depend on the current state of the database replication group. <strong md-src-pos="8693..8722">On the other two machines</strong>, we can check this by navigating to <code md-src-pos="8759..8810">porta-onprem-bundle/porta-helpers/porta-database/checks</code> and double-clicking on <code md-src-pos="8834..8862">view-group-repl-status.bat</code>.</p>
+     <ul md-src-pos="8869..9446">
+      <li md-src-pos="8869..9045">If the resulting output shows an entry with <code md-src-pos="8915..8929">MEMBER_STATE</code> of <code md-src-pos="8933..8941">ONLINE</code> and <code md-src-pos="8946..8959">MEMBER_ROLE</code> of <code md-src-pos="8963..8972">PRIMARY</code>, then the database is already bootstrapped and the answer should be <code md-src-pos="9041..9044">n</code>.</li>
+      <li md-src-pos="9050..9246">If the resulting output shows only one entry with <code md-src-pos="9102..9116">MEMBER_STATE</code> of <code md-src-pos="9120..9129">OFFLINE</code>, then this machine is not currently part of the replication group and status should be checked from another machine.</li>
+      <li md-src-pos="9251..9400">If each machine has been checked and given the <code md-src-pos="9300..9314">MEMBER_STATE</code> of <code md-src-pos="9318..9327">OFFLINE</code>, then it is safe to bootstrap this machine and the answer should be <code md-src-pos="9396..9399">y</code>.</li>
+      <li md-src-pos="9405..9446">This output should look something like:</li>
+     </ul>
+     <pre class="code-fence" md-src-pos="9451..10721"><div class="code-fence-highlighter-copy-button" data-fence-content="Ky0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCnwgQ0hBTk5FTF9OQU1FICAgICAgICAgICAgICB8IE1FTUJFUl9JRCAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IE1FTUJFUl9IT1NUICAgIHwgTUVNQkVSX1BPUlQgfCBNRU1CRVJfU1RBVEUgfCBNRU1CRVJfUk9MRSB8IE1FTUJFUl9WRVJTSU9OIHwgTUVNQkVSX0NPTU1VTklDQVRJT05fU1RBQ0sgfAorLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKfCBncm91cF9yZXBsaWNhdGlvbl9hcHBsaWVyIHwgMWEzNTFjZTMtYmExOS0xMWVlLTllNTktMDI0MmFjMTIwMDAyIHwgMTkyLjE2OC41MC4xNjMgfCAgICAgICAgMzMwNiB8IE9OTElORSAgICAgICB8IFBSSU1BUlkgICB8IDguMC4zMiAgICAgICAgIHwgWENvbSAgICAgICAgICAgICAgICAgICAgICAgfAp8IGdyb3VwX3JlcGxpY2F0aW9uX2FwcGxpZXIgfCBkN2MwNTM1Yy1iYTE5LTExZWUtOWYyOC0wMjQyYWMxNDAwMDIgfCAxOTIuMTY4LjUwLjIwICB8ICAgICAgICAzMzA3IHwgT05MSU5FICAgICAgIHwgU0VDT05EQVJZICAgfCA4LjAuMzIgICAgICAgICB8IFhDb20gICAgICAgICAgICAgICAgICAgICAgIHwKfCBncm91cF9yZXBsaWNhdGlvbl9hcHBsaWVyIHwgZTRhMGFjNjMtYmExOS0xMWVlLTlmNTQtMDI0MmFjMTUwMDAyIHwgMTkyLjE2OC41MC40MiAgfCAgICAgICAgMzMwOCB8IE9OTElORSAgICAgICB8IFNFQ09OREFSWSAgICAgfCA4LjAuMzIgICAgICAgICB8IFhDb20gICAgICAgICAgICAgICAgICAgICAgIHwKKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0r">
+  <img class="code-fence-highlighter-copy-button-icon" data-original-src="offline/install" src="http://localhost:63342/markdownPreview/890414360/offline/install?_ijt=lnukcm4lj2qbe7j74j88g98rip">
+  <span class="tooltiptext">Copy to clipboard</span>
+</div><code class="language-bash" md-src-pos="9451..10721"><a class="run-icon code-block" href="#" role="button" data-command="Run:43761f669e44c8b570021750f31c28c2" data-commandtype="block"><img src="commandRunner/runrun.png"></a><span md-src-pos="9451..9459"></span><span md-src-pos="9459..9634">+---------------------------+--------------------------------------+----------------+-------------+--------------+-------------+----------------+----------------------------+
+</span><span md-src-pos="9634..9809">| CHANNEL_NAME              | MEMBER_ID                            | MEMBER_HOST    | MEMBER_PORT | MEMBER_STATE | MEMBER_ROLE | MEMBER_VERSION | MEMBER_COMMUNICATION_STACK |
+</span><span md-src-pos="9809..9984">+---------------------------+--------------------------------------+----------------+-------------+--------------+-------------+----------------+----------------------------+
+</span><span md-src-pos="9984..10077">| group_replication_applier | 1a351ce3-ba19-11ee-9e59-0242ac120002 | 192.168.50.163 |        </span><span md-src-pos="10077..10081" style="color: rgb(255, 150, 104);">3306</span><span md-src-pos="10081..10157"> | ONLINE       | PRIMARY   | 8.0.32         | XCom                       |
+</span><span md-src-pos="10157..10250">| group_replication_applier | d7c0535c-ba19-11ee-9f28-0242ac140002 | 192.168.50.20  |        </span><span md-src-pos="10250..10254" style="color: rgb(255, 150, 104);">3307</span><span md-src-pos="10254..10332"> | ONLINE       | SECONDARY   | 8.0.32         | XCom                       |
+</span><span md-src-pos="10332..10425">| group_replication_applier | e4a0ac63-ba19-11ee-9f54-0242ac150002 | 192.168.50.42  |        </span><span md-src-pos="10425..10429" style="color: rgb(255, 150, 104);">3308</span><span md-src-pos="10429..10509"> | ONLINE       | SECONDARY     | 8.0.32         | XCom                       |
+</span><span md-src-pos="10509..10684">+---------------------------+--------------------------------------+----------------+-------------+--------------+-------------+----------------+----------------------------+
+</span><span md-src-pos="10712..10721"></span></code></pre>
+     <blockquote md-src-pos="10726..10904">
+      <p md-src-pos="10728..10904"><strong md-src-pos="10728..10904"><em md-src-pos="10730..10902">!! NOTE !!<br>
+          Bootstrapping a database in an existing, healthy group can lead to data loss and corruption. If you are still unsure how to proceed, please contact support.</em></strong></p>
+     </blockquote></li>
+    <li md-src-pos="10906..11193">
+     <p md-src-pos="10910..11193">If the database has not been bootstrapped, you will be prompted with <code md-src-pos="10979..11013">Should the database be migrated?</code>. If this is the final machine being updated, and no machines have been bootstrapped during their update process, type <code md-src-pos="11132..11135">y</code> and press enter. Otherwise, press enter to confirm <code md-src-pos="11187..11190">n</code>.</p></li>
+    <li md-src-pos="11194..11570">
+     <p md-src-pos="11198..11570">If the database has not been bootstrapped, you will be prompted with <code md-src-pos="11267..11299">Should the database be seeded?</code>. <strong md-src-pos="11301..11383"><em md-src-pos="11303..11381">If you have not been instructed to seed for this update, type or confirm <code md-src-pos="11377..11380">n</code></em></strong>. Otherwise, if this is the final machine being updated, and no machines have been bootstrapped during their update process, type <code md-src-pos="11513..11516">y</code> and press enter. Otherwise, type <code md-src-pos="11550..11553">n</code> and press enter.</p></li>
+    <li md-src-pos="11571..11762">
+     <p md-src-pos="11575..11762">When the installation is complete, you will see a message that the installation was successful, and shortcuts to Porta On Prem and the Porta On Prem backup will be created on the desktop.</p></li>
+    <li md-src-pos="11764..11943">
+     <p md-src-pos="11768..11943">You can double-check the version of Porta that was just installed by navigating to <code md-src-pos="11851..11899">porta-onprem-bundle/porta-helpers/porta-checks</code> and double-clicking on <code md-src-pos="11923..11942">check-version.bat</code>.</p></li>
+    <li md-src-pos="11945..12215">
+     <p md-src-pos="11949..12022"><strong md-src-pos="11949..12022">If this was the main machine, repeat steps 1-14 on the backup machine</strong></p>
+     <ul md-src-pos="12027..12215">
+      <li md-src-pos="12027..12215">Be sure to wait for the main machine to finish installing before starting the backup machine; the main machine database must be running before the backup machine's database can be set up</li>
+     </ul></li>
+    <li md-src-pos="12217..12498">
+     <p md-src-pos="12221..12297"><strong md-src-pos="12221..12297">If this was the backup machine, repeat steps 1-14 on the arbiter machine</strong></p>
+     <ul md-src-pos="12302..12498">
+      <li md-src-pos="12302..12498">Be sure to wait for the main and backup machines to finish installing before starting the arbiter machine; the other databases must be running before the arbiter machine's database can be set up</li>
+     </ul></li>
+    <li md-src-pos="12500..12577">
+     <p md-src-pos="12504..12577">If applicable, update your Porta Bridge and Unreal plugins configurations</p></li>
+   </ol>
+   <hr>
+   <h1 id="porta-integrations-setup" md-src-pos="12586..12612">Porta Integrations Setup</h1>
+   <h3 id="porta-bridge" md-src-pos="12614..12630">Porta Bridge</h3>
+   <ul md-src-pos="12631..13339">
+    <li md-src-pos="12631..12664">Run the Bridge as administrator</li>
+    <li md-src-pos="12665..12707">Fill out the D3 Connection Configuration</li>
+    <li md-src-pos="12708..13270">Before hitting the Start button, go to the menu Window &gt; Porta
+     <ul md-src-pos="12775..13270">
+      <li md-src-pos="12775..12846">Make sure the Socket Server URL is <code md-src-pos="12812..12845">http://porta-socket.server:6001</code></li>
+      <li md-src-pos="12849..13001">Make sure the API URL is <code md-src-pos="12876..12908">http://&lt;PORTA-MACHINE-IP&gt;:6001</code>
+       <ul md-src-pos="12914..13001">
+        <li md-src-pos="12914..13001">Replace <code md-src-pos="12924..12944">&lt;PORTA-MACHINE-IP&gt;</code> with the IP address of the current machine running Porta</li>
+       </ul></li>
+      <li md-src-pos="13004..13270">Make sure the Http Listener IP Address is <code md-src-pos="13048..13069">&lt;BRIDGE-MACHINE-IP&gt;</code>
+       <ul md-src-pos="13074..13270">
+        <li md-src-pos="13074..13161">Replace <code md-src-pos="13084..13105">&lt;BRIDGE-MACHINE-IP&gt;</code> with the IP address of the machine running the Bridge.</li>
+        <li md-src-pos="13166..13270">This is likely the same as the Porta machine IP if the Bridge is running on the same machine as Porta</li>
+       </ul></li>
+     </ul></li>
+    <li md-src-pos="13271..13339">Go to Window &gt; D3 and hit the Start button to connect Porta to D3</li>
+   </ul>
+   <h3 id="unreal-plugin" md-src-pos="13341..13358">Unreal Plugin</h3>
+   <ul md-src-pos="13359..13546">
+    <li md-src-pos="13359..13412">Connection URL: <code md-src-pos="13377..13410">http://porta-socket.server:6001</code></li>
+    <li md-src-pos="13413..13546">API URL: <code md-src-pos="13424..13456">http://&lt;PORTA-MACHINE-IP&gt;:8000</code>
+     <ul md-src-pos="13459..13546">
+      <li md-src-pos="13459..13546">Replace <code md-src-pos="13469..13489">&lt;PORTA-MACHINE-IP&gt;</code> with the IP address of the current machine running Porta</li>
+     </ul></li>
+   </ul>
+   <h3 id="access-porta-in-chrome" md-src-pos="13549..13575">Access Porta in Chrome</h3>
+   <p md-src-pos="13576..13707"><span md-src-pos="13576..13583">Use the</span> "<span md-src-pos="13585..13597">Main Company</span>" <span md-src-pos="13599..13601">--</span> <strong md-src-pos="13602..13707">ensure the socket server is set to <code md-src-pos="13639..13671">http://&lt;PORTA-MACHINE-IP&gt;:6001</code>, NOT <code md-src-pos="13677..13705">http://porta-socket.server</code></strong></p>
+   <p md-src-pos="13709..13727"><span md-src-pos="13709..13726">Login Credentials</span>:</p>
+   <ul md-src-pos="13728..13785">
+    <li md-src-pos="13728..13762">email: <code md-src-pos="13737..13762">superadmin@disguise.one</code></li>
+    <li md-src-pos="13763..13785">password: <code md-src-pos="13775..13785">password</code></li>
+   </ul>
+   <p md-src-pos="13787..13852"><strong md-src-pos="13787..13852">Be sure to access Porta using its machine IP, NOT <code md-src-pos="13839..13850">localhost</code></strong></p>
+   <p md-src-pos="13854..13941"><span md-src-pos="13854..13859">Porta</span>: <code md-src-pos="13861..13894">http://&lt;PORTA-MACHINE-IP&gt;:8080/</code><br><span md-src-pos="13897..13906">Porta API</span>: <code md-src-pos="13908..13941">http://&lt;PORTA-MACHINE-IP&gt;:8000/</code></p>
+  </div>
+ </body>
+</html>
